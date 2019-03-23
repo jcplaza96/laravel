@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddForeignToActivocorrienteTable extends Migration
+class AddForeignToBalanceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddForeignToActivocorrienteTable extends Migration
      */
     public function up()
     {
-        Schema::table('activocorriente', function (Blueprint $table) {
-            $table->foreign('deudorescomerciales_id')->references('id')->on('deudorescomerciales')->onDelete('cascade');
+        Schema::table('balance', function (Blueprint $table) {
+            $table->foreign('empresa_id')->references('id')->on('empresa')->onDelete('cascade');
         });
     }
 
@@ -25,7 +25,7 @@ class AddForeignToActivocorrienteTable extends Migration
      */
     public function down()
     {
-        Schema::table('activocorriente', function (Blueprint $table) {
+        Schema::table('balance', function (Blueprint $table) {
             //
         });
     }

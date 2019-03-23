@@ -15,6 +15,7 @@ class CreateActivonocorrienteTable extends Migration
     {
         Schema::create('activonocorriente', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('activo_id')->unsigned();
             $table->double('inmovilizadoIntangible');
             $table->double('inmovilizadoMaterial');
             $table->double('inversionesInmoviliarias');

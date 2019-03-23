@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateReservasTable extends Migration
+class AddForeignToPasivonocorrienteTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,8 @@ class CreateReservasTable extends Migration
      */
     public function up()
     {
-        Schema::create('reservas', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->double('reservaCapitalizacion');
-            $table->double('otrasReservas');
-            $table->double('totalReservas');
-            $table->timestamps();
+        Schema::table('pasivonocorriente', function (Blueprint $table) {
+            $table->foreign('pasivo_id')->references('id')->on('pasivo')->onDelete('cascade');
         });
     }
 
@@ -29,6 +25,8 @@ class CreateReservasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reservas');
+        Schema::table('pasivonocorriente', function (Blueprint $table) {
+            //
+        });
     }
 }

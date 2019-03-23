@@ -15,8 +15,7 @@ class CreateActivoTable extends Migration
     {
         Schema::create('activo', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('activocorriente_id')->unsigned();
-            $table->bigInteger('activonocorriente_id')->unsigned();
+            $table->bigInteger('balance_id')->unsigned();
             $table->double('totalActivo');
             $table->timestamps();
         });

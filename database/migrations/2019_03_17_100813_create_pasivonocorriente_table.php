@@ -15,8 +15,12 @@ class CreatePasivonocorrienteTable extends Migration
     {
         Schema::create('pasivonocorriente', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table-> bigInteger('pasivo_id')->unsigned();
             $table->double('provisionesLargoPlazo');
-            $table-> bigInteger('deudaslargoplazo_id')->unsigned();
+            $table->double('totalDeudasLargoPlazo');
+            $table->double('deudasEntidadesCredito');
+            $table->double('acreedoresArrendamientoFinanciero');
+            $table->double('otrasDeudasLargoPlazo');
             $table->double('deudasEmpresasGrupo');
             $table->double('pasivosImpuestoDiferido');
             $table->double('periodificacionesLargoPlazo');

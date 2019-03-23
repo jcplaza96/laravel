@@ -15,8 +15,14 @@ class CreateActivocorrienteTable extends Migration
     {
         Schema::create('activocorriente', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table-> bigInteger('activo_id')->unsigned();
             $table->double('existencias');
-            $table-> bigInteger('deudorescomerciales_id')->unsigned();
+            $table->double('totalDeudoresComerciales');
+            $table->double('totalClientesVentas');
+            $table->double('ClientesVentasLargoPlazo');
+            $table->double('ClientesVentasCortoPlazo');
+            $table->double('accionistasDesembolsosExigidos');
+            $table->double('otrosDeudores');
             $table->double('inversionesEmpresasGrupo');
             $table->double('inversionesFinancierasCortoPlazo');
             $table->double('periodificacionesCortoPlazo');

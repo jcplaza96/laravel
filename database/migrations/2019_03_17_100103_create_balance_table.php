@@ -16,9 +16,7 @@ class CreateBalanceTable extends Migration
         Schema::create('balance', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('empresa_id')->unsigned();
-            $table->bigInteger('activo_id')->unsigned();
-            $table->bigInteger('pasivo_id')->unsigned();
-            $table->date('fecha');
+            $table->integer('año');
             $table->timestamps();
         });
     }

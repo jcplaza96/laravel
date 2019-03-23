@@ -15,12 +15,20 @@ class CreatePasivocorrienteTable extends Migration
     {
         Schema::create('pasivocorriente', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('pasivo_id')->unsigned();
             $table->double('provisionesCortoPlazo');
-            $table->bigInteger('deudascortoplazo_id')->unsigned();
+            $table->double('totalDeudasCortoPlazo');
+            $table->double('deudaEntidadesCredito');
+            $table->double('acreedoresArrendamientoFinanciero');
+            $table->double('otrasDeudasCortoPlazo');
             $table->double('deudasEmpresasGrupo');
-            $table->bigInteger('acreedorescomerciales_id')->unsigned();
+            $table->double('totalAcreedoresComerciales_OtrasCuentas');
+            $table->double('totalProveedores');
+            $table->double('proveedoresLargoPlazo');
+            $table->double('proveedoresCortoPlazo');
+            $table->double('otrosAcreedores');
             $table->double('periodificacionesCortoPlazo');
-            $table->double('deudaCaracteristicasEspeciales');
+            $table->double('deudaCaracteristicasEspecialesCortoPlazo');
             $table->double('totalPasivoCorriente');
             $table->timestamps();
         });

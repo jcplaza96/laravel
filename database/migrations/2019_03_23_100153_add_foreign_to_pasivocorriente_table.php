@@ -14,8 +14,7 @@ class AddForeignToPasivocorrienteTable extends Migration
     public function up()
     {
         Schema::table('pasivocorriente', function (Blueprint $table) {
-            $table->foreign('deudascortoplazo_id')->references('id')->on('deudascortoplazo')->onDelete('cascade');
-            $table->foreign('acreedorescomerciales_id')->references('id')->on('acreedorescomerciales')->onDelete('cascade');
+            $table->foreign('pasivo_id')->references('id')->on('pasivo')->onDelete('cascade');
         });
     }
 

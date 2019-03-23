@@ -15,9 +15,7 @@ class CreatePasivoTable extends Migration
     {
         Schema::create('pasivo', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('patrimonioneto_id')->unsigned();
-            $table->bigInteger('pasivonocorriente_id')->unsigned();
-            $table->bigInteger('pasivocorriente_id')->unsigned();
+            $table->bigInteger('balance_id')->unsigned();
             $table->double('totalPasivo');
             $table->timestamps();
         });

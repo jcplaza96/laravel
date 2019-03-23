@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddForeignToDeudorescomercialesTable extends Migration
+class AddForeignToPasivoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddForeignToDeudorescomercialesTable extends Migration
      */
     public function up()
     {
-        Schema::table('deudorescomerciales', function (Blueprint $table) {
-            $table->foreign('clientesventasyprestacionesservicios_id', 'fk23')->references('id')->on('clientesventasyprestacionesservicios')->onDelete('cascade');
+        Schema::table('pasivo', function (Blueprint $table) {
+            $table->foreign('balance_id')->references('id')->on('balance')->onDelete('cascade');
         });
     }
 
@@ -25,7 +25,7 @@ class AddForeignToDeudorescomercialesTable extends Migration
      */
     public function down()
     {
-        Schema::table('deudorescomerciales', function (Blueprint $table) {
+        Schema::table('pasivo', function (Blueprint $table) {
             //
         });
     }

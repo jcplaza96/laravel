@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddForeignToFondospropiosTable extends Migration
+class AddForeignToPatrimonionetoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddForeignToFondospropiosTable extends Migration
      */
     public function up()
     {
-        Schema::table('fondospropios', function (Blueprint $table) {
-            $table->foreign('capital_id')->references('id')->on('capital')->onDelete('cascade');
-            $table->foreign('reservas_id')->references('id')->on('reservas')->onDelete('cascade');
+        Schema::table('patrimonioneto', function (Blueprint $table) {
+            $table->foreign('pasivo_id')->references('id')->on('pasivo')->onDelete('cascade');
         });
     }
 
@@ -26,7 +25,7 @@ class AddForeignToFondospropiosTable extends Migration
      */
     public function down()
     {
-        Schema::table('fondospropios', function (Blueprint $table) {
+        Schema::table('patrimonioneto', function (Blueprint $table) {
             //
         });
     }
