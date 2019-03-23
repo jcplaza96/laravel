@@ -8,4 +8,9 @@ class patrimonioneto extends Model
 {
     //
     protected $table = 'patrimonioneto';
+
+    public function pasivo()
+    {
+        return $this->belongsTo('App\Pasivo');
+    }
 }

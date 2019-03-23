@@ -8,4 +8,6 @@ class user_empresa extends Model
 {
     //
     protected $table = 'user_empresa';
+
+    
 }

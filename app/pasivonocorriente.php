@@ -8,4 +8,9 @@ class pasivonocorriente extends Model
 {
     //
     protected $table = 'pasivonocorriente';
+
+    public function pasivo()
+    {
+        return $this->belongsTo('App\Pasivo');
+    }
 }
