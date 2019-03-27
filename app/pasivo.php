@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class pasivo extends Model
+class Pasivo extends Model
 {
     //
     protected $table = 'pasivo';

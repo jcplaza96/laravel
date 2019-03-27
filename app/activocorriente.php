@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class activocorriente extends Model
+class Activocorriente extends Model
 {
     //
     protected $table = 'activocorriente';

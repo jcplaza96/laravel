@@ -1,6 +1,6 @@
 <!-- Navigation -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <a class="ml-5 navbar-brand" href="#">
+    <a class="ml-5 navbar-brand" href="{{url('/')}}">
         <h1 class="display-5">Gesinem Análisis Financiero</h1>
     </a>
     <div class="container">    
@@ -9,23 +9,25 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
+                @if(Auth::check())
                 <li class="nav-item">
                     <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{url('/')}}" >Home</a>
                 </li>
                 <li class="nav-item">
                     <div class="dropdown">
-                    <a class="nav-link btn {{ request()->is('catalog') ? 'active' : '' }}" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catálogo</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="{{url('/patinetes')}}" >Patinetes</a>
-                        <a class="dropdown-item" href="{{url('/bicicletas')}}" >Bicicletas</a>
-                        <a class="dropdown-item" href="{{url('/motocicletas')}}">Motocicletas</a>
-                        @if(Auth::check() && strcmp ( "admin" , Auth::user()->rol)==0)
-                            <hr>
-                            <a class="dropdown-item" href="{{url('/create')}}">Añadir producto</a>
-                        @endif
-                    </div>
+                        <a class="nav-link btn {{ request()->is('catalog') ? 'active' : '' }}" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catálogo</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{{url('/patinetes')}}" >Patinetes</a>
+                            <a class="dropdown-item" href="{{url('/bicicletas')}}" >Bicicletas</a>
+                            <a class="dropdown-item" href="{{url('/motocicletas')}}">Motocicletas</a>
+                            @if(Auth::check() && strcmp ( "admin" , Auth::user()->rol)==0)
+                                <hr>
+                                <a class="dropdown-item" href="{{url('/create')}}">Añadir producto</a>
+                            @endif
+                        </div>
                     </div>
                 </li>
+                @endif
                 <li class="nav-item">
                     @if(Auth::check())
                         <form action="{{ url('/logout') }}" method="POST" style="display:inline">

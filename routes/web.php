@@ -17,10 +17,9 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-
+    Route::get('/excel', 'analisisController@getDatos');
 });
 
 
 Auth::routes();
 
-Route::get('/prueba', 'Analisis2Controller@getShow');
