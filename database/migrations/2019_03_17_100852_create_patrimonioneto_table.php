@@ -28,7 +28,7 @@ class CreatePatrimonionetoTable extends Migration
             $table->double('resultadosEjerciciosAnteriores');
             $table->double('otrasAportacionesSocios');
             $table->double('resultadoEjercicio');
-            $table->double('dividentoCuenta');
+            $table->double('dividendoCuenta');
             $table->double('ajustesPatrimonioNeto');
             $table->double('subvencionesDonacionesLegados');
             $table->double('totalPatrimonioNeto');

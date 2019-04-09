@@ -16,11 +16,16 @@ class Pasivo extends Model
 
     public function pasivoCorriente()
     {
-        return $this->hasOne('App\Pasivo');
+        return $this->hasOne('App\Pasivocorriente');
     }
 
     public function pasivoNoCorriente()
     {
-        return $this->hasOne('App\Pasivo');
+        return $this->hasOne('App\Pasivonocorriente');
+    }
+
+    public function patrimonioNeto()
+    {
+        return $this->hasOne('App\Patrimonioneto');
     }
 }

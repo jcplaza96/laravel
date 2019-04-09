@@ -37,7 +37,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function empresas()
+    public function Empresas()
     {
         return $this->belongsToMany(Empresa::class, 'User_empresa');
     }

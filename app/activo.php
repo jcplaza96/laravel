@@ -15,11 +15,11 @@ class Activo extends Model
 
     public function activoCorriente()
     {
-        return $this->hasOne('App\Pasivo');
+        return $this->hasOne('App\Activocorriente');
     }
 
     public function activoNoCorriente()
     {
-        return $this->hasOne('App\Pasivo');
+        return $this->hasOne('App\Activonocorriente');
     }
 }

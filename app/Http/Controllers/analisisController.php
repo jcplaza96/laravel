@@ -21,22 +21,21 @@ class analisisController extends Controller
 {
     public function getDatos(){
 
-        //$arrayDatos = $this->importExcel(2018, 1);
-        $arrayDatos = null;
+        $arrayDatos = $this->importExcel(2018, 2);
 
 
         return    view('analisis.prueba')->with('arrayDatos', $arrayDatos);
     }
 
 
-    public function importExcel($año, $empresa){
+    public function importExcel($anio, $empresa){
 
     
         $arrayDatos = Excel::toArray(new BalancesImport, 'prueba.XLS')[0];
 
         $balance = new Balance();
         $balance->empresa_id = $empresa;
-        $balance->año = $año;
+        $balance->anio = $anio;
         $balance->save();
 
         $activo = new Activo();

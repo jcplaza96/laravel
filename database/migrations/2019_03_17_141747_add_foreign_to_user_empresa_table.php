@@ -14,7 +14,7 @@ class AddForeignToUserEmpresaTable extends Migration
     public function up()
     {
         Schema::table('user_empresa', function (Blueprint $table) {
-            $table->foreign('users_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('empresa_id')->references('id')->on('empresa')->onDelete('cascade');
         });
     }

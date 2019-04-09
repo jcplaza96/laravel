@@ -16,7 +16,7 @@ class CreateUserEmpresaTable extends Migration
         Schema::create('user_empresa', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('empresa_id')->unsigned();
-            $table->bigInteger('users_id')->unsigned();
+            $table->bigInteger('user_id')->unsigned();
             $table->timestamps();
         });
     }
