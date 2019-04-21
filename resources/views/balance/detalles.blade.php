@@ -1,203 +1,206 @@
 @extends('layouts.master')
 @section('content')
-    <h2>Detalles del balance</h2>
+    <h2><a href="{{ url('/empresas/'.$empresa_id)}}"><i class="fas fa-arrow-circle-left"></a></i> Detalles del balance</h2>
     <form>
         <table class="table table-bordered table-responsive table-striped mt-5 w-100">
             <tbody>
+                <tr class="text-center">
+                    <td colspan="5"></td><td>{{$balance->anio}}</td><td>{{$balanceAnterior->anio}}</td>
+                </tr>
                 <tr>
-                <td colspan="5"><h3>Activo</h3><td><input class="w-100" type="number" min="0" step="any" value="{{$balance->activo->totalActivo}}"></td>
+                    <td colspan="5"><h3>Activo</h3><td><input readonly class="w-100" type="number" min="0" step="any" value="{{$balance->activo->totalActivo}}"></td><td><input readonly class="w-100" type="number" min="0" step="any" value="{{$balanceAnterior->activo->totalActivo}}"></td>
                 </tr>
                     <tr>
-                        <td></td><td colspan="4"><h5>A) Activo No Corriente.</h5></td><td><input type="number" min="0" step="any" value="{{$balance->activo->activoNoCorriente->totalActivoNoCorriente}}"></td>
+                        <td></td><td colspan="4"><h5>A) Activo No Corriente.</h5></td><td><input readonly type="number" min="0" step="any" value="{{$balance->activo->activoNoCorriente->totalActivoNoCorriente}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->activo->activoNoCorriente->totalActivoNoCorriente}}"></td>
                     </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">I. Inmovilizado intangible.</td><td><input type="number" min="0" step="any" value="{{$balance->activo->activoNoCorriente->inmovilizadoIntangible}}"></td>
+                            <td colspan="2"></td><td colspan="3">I. Inmovilizado intangible.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->activo->activoNoCorriente->inmovilizadoIntangible}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->activo->activoNoCorriente->inmovilizadoIntangible}}"></td>
                         </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">II. Inmovilizado material.</td><td><input type="number" min="0" step="any" value="{{$balance->activo->activoNoCorriente->inmovilizadoMaterial}}"></td>
+                            <td colspan="2"></td><td colspan="3">II. Inmovilizado material.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->activo->activoNoCorriente->inmovilizadoMaterial}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->activo->activoNoCorriente->inmovilizadoMaterial}}"></td>
                         </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">III. Inversiones inmobiliarias.</td><td><input type="number" min="0" step="any" value="{{$balance->activo->activoNoCorriente->inversionesInmoviliarias}}"></td>
+                            <td colspan="2"></td><td colspan="3">III. Inversiones inmobiliarias.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->activo->activoNoCorriente->inversionesInmoviliarias}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->activo->activoNoCorriente->inversionesInmoviliarias}}"></td>
                         </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">IV. Inversiones en empresas del grupo y asociadas a largo plazo.</td><td><input type="number" min="0" step="any" value="{{$balance->activo->activoNoCorriente->inversionesEmpresasGrupo}}"></td>
+                            <td colspan="2"></td><td colspan="3">IV. Inversiones en empresas del grupo y asociadas a largo plazo.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->activo->activoNoCorriente->inversionesEmpresasGrupo}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->activo->activoNoCorriente->inversionesEmpresasGrupo}}"></td>
                         </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">V. Inversiones financieras a largo plazo.</td><td><input type="number" min="0" step="any" value="{{$balance->activo->activoNoCorriente->inversionesFinancierasLargoPlazo}}"></td>
+                            <td colspan="2"></td><td colspan="3">V. Inversiones financieras a largo plazo.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->activo->activoNoCorriente->inversionesFinancierasLargoPlazo}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->activo->activoNoCorriente->inversionesFinancierasLargoPlazo}}"></td>
                         </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">VI. Activos por impuesto diferido.</td><td><input type="number" min="0" step="any" value="{{$balance->activo->activoNoCorriente->activosImpuestoDiferido}}"></td>
+                            <td colspan="2"></td><td colspan="3">VI. Activos por impuesto diferido.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->activo->activoNoCorriente->activosImpuestoDiferido}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->activo->activoNoCorriente->activosImpuestoDiferido}}"></td>
                         </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">VII. Deudores comerciales no corrientes</td><td><input type="number" min="0" step="any" value="{{$balance->activo->activoNoCorriente->deudoresComercialesNoCorriente}}"></td>
+                            <td colspan="2"></td><td colspan="3">VII. Deudores comerciales no corrientes</td><td><input readonly type="number" min="0" step="any" value="{{$balance->activo->activoNoCorriente->deudoresComercialesNoCorriente}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->activo->activoNoCorriente->deudoresComercialesNoCorriente}}"></td>
                         </tr>
                     <tr>
-                        <td></td><td colspan="4"><h5>B) Activo Corriente.</h5><td><input type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->totalActivoCorriente}}"></td>
+                        <td></td><td colspan="4"><h5>B) Activo Corriente.</h5><td><input readonly type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->totalActivoCorriente}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->activo->activoCorriente->totalActivoCorriente}}"></td>
                     </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">I. Existencias.</td><td><input type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->existencias}}"></td>
+                            <td colspan="2"></td><td colspan="3">I. Existencias.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->existencias}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->activo->activoCorriente->existencias}}"></td>
                         </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">II. Deudores comerciales y otras cuentas a cobrar.</td><td><input type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->totalDeudoresComerciales}}"></td>
+                            <td colspan="2"></td><td colspan="3">II. Deudores comerciales y otras cuentas a cobrar.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->totalDeudoresComerciales}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->activo->activoCorriente->totalDeudoresComerciales}}"></td>
                         </tr>
                             <tr>
-                                <td colspan="3"></td><td colspan="2">1. Clientes por ventas y Prestaciones de servicios</td><td><input type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->existencias}}"></td>
+                                <td colspan="3"></td><td colspan="2">1. Clientes por ventas y Prestaciones de servicios</td><td><input readonly type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->totalClientesVentas}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->activo->activoCorriente->totalClientesVentas}}"></td>
                             </tr>
                                 <tr>
-                                    <td colspan="4"></td><td>a) Clientes por ventas y prestaciones de servicios a largo plazo</td><td><input type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->ClientesVentasLargoPlazo}}"></td>
+                                    <td colspan="4"></td><td>a) Clientes por ventas y prestaciones de servicios a largo plazo</td><td><input readonly type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->ClientesVentasLargoPlazo}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->activo->activoCorriente->ClientesVentasLargoPlazo}}"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4"></td><td>b) Clientes por ventas y prestaciones de servicios a corto plazo</td><td><input type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->ClientesVentasCortoPlazo}}"></td>
+                                    <td colspan="4"></td><td>b) Clientes por ventas y prestaciones de servicios a corto plazo</td><td><input readonly type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->ClientesVentasCortoPlazo}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->activo->activoCorriente->ClientesVentasCortoPlazo}}"></td>
                                 </tr>
                             <tr>
-                                <td colspan="3"></td><td colspan="2">2. Accionistas (socios) por desembolsos exigidos</td><td><input type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->accionistasDesembolsosExigidos}}"></td>
+                                <td colspan="3"></td><td colspan="2">2. Accionistas (socios) por desembolsos exigidos</td><td><input readonly type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->accionistasDesembolsosExigidos}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->activo->activoCorriente->accionistasDesembolsosExigidos}}"></td>
                             </tr>
                             <tr>
-                                <td colspan="3"></td><td colspan="2">3. Otros deudores</td><td><input type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->otrosDeudores}}"></td>
+                                <td colspan="3"></td><td colspan="2">3. Otros deudores</td><td><input readonly type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->otrosDeudores}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->activo->activoCorriente->otrosDeudores}}"></td>
                             </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">III. Inversiones en empresas del grupo y asociadas a corto plazo.</td><td><input type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->inversionesEmpresasGrupo}}"></td>
+                            <td colspan="2"></td><td colspan="3">III. Inversiones en empresas del grupo y asociadas a corto plazo.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->inversionesEmpresasGrupo}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->activo->activoCorriente->inversionesEmpresasGrupo}}"></td>
                         </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">IV. Inversiones financieras a corto plazo.</td><td><input type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->inversionesFinancierasCortoPlazo}}"></td>
+                            <td colspan="2"></td><td colspan="3">IV. Inversiones financieras a corto plazo.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->inversionesFinancierasCortoPlazo}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->activo->activoCorriente->inversionesFinancierasCortoPlazo}}"></td>
                         </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">V. Periodificaciones a corto plazo</td><td><input type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->periodificacionesCortoPlazo}}"></td>
+                            <td colspan="2"></td><td colspan="3">V. Periodificaciones a corto plazo</td><td><input readonly type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->periodificacionesCortoPlazo}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->activo->activoCorriente->periodificacionesCortoPlazo}}"></td>
                         </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">VI. Efectivo y otros activos líquidos equivalentes</td><td><input type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->efectivoActivosLiquidos}}"></td>
+                            <td colspan="2"></td><td colspan="3">VI. Efectivo y otros activos líquidos equivalentes</td><td><input readonly type="number" min="0" step="any" value="{{$balance->activo->activoCorriente->efectivoActivosLiquidos}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->activo->activoCorriente->efectivoActivosLiquidos}}"></td>
                         </tr>         
                 <tr>
-                    <td colspan="6"></td>
+                    <td colspan="7"></td>
                 </tr>
                 <tr>
-                    <td colspan="5"><h3 >Pasivo</h3><td><input type="number" min="0" step="any" value="{{$balance->pasivo->totalPasivo}}"></td>
+                    <td colspan="5"><h3 >Pasivo</h3><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->totalPasivo}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->totalPasivo}}"></td>
                 </tr>
                     <tr>
-                        <td></td><td colspan="4"><h5>A) Patrimonio Neto.</h5></td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->totalPatrimonioNeto}}"></td>
+                        <td></td><td colspan="4"><h5>A) Patrimonio Neto.</h5></td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->totalPatrimonioNeto}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->patrimonioNeto->totalPatrimonioNeto}}"></td>
                     </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">A-1) Fondos propios</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->totalFondosPropios}}"></td>
+                            <td colspan="2"></td><td colspan="3">A-1) Fondos propios</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->totalFondosPropios}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->patrimonioNeto->totalFondosPropios}}"></td>
                         </tr>
                             <tr>
-                                <td colspan="3"></td><td colspan="2">I. Capital.</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->totalCapital}}"></td>
+                                <td colspan="3"></td><td colspan="2">I. Capital.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->totalCapital}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->patrimonioNeto->totalCapital}}"></td>
                             </tr>
                                 <tr>
-                                    <td colspan="4"></td><td>1. Capital escriturado.</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->capitalEscriturado}}"></td>
+                                    <td colspan="4"></td><td>1. Capital escriturado.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->capitalEscriturado}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->patrimonioNeto->capitalEscriturado}}"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4"></td><td>2. (Capital no exigido).</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->capitalNoExigido}}"></td>
+                                    <td colspan="4"></td><td>2. (Capital no exigido).</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->capitalNoExigido}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->patrimonioNeto->capitalNoExigido}}"></td>
                                 </tr>
                             <tr>
-                                <td colspan="3"></td><td colspan="2">II. Prima de emisión.</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->primaEmision}}"></td>
+                                <td colspan="3"></td><td colspan="2">II. Prima de emisión.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->primaEmision}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->patrimonioNeto->primaEmision}}"></td>
                             </tr>
                             <tr>
-                                <td colspan="3"></td><td colspan="2">III. Reservas.</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->totalReservas}}"></td>
+                                <td colspan="3"></td><td colspan="2">III. Reservas.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->totalReservas}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->patrimonioNeto->totalReservas}}"></td>
                             </tr>
                                 <tr>
-                                    <td colspan="4"></td><td>1. Reserva de capitalización</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->reservaCapitalizacion}}"></td>
+                                    <td colspan="4"></td><td>1. Reserva de capitalización</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->reservaCapitalizacion}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->patrimonioNeto->reservaCapitalizacion}}"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4"></td><td>2. Otras reservas</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->otrasReservas}}"></td>
+                                    <td colspan="4"></td><td>2. Otras reservas</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->otrasReservas}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->patrimonioNeto->otrasReservas}}"></td>
                                 </tr>
                             <tr>
-                                <td colspan="3"></td><td colspan="2">IV. (Acciones y participaciones en patrimonio propias).</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->accionesParticipacionesPatrimonioPropias}}"></td>
+                                <td colspan="3"></td><td colspan="2">IV. (Acciones y participaciones en patrimonio propias).</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->accionesParticipacionesPatrimonioPropias}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->patrimonioNeto->accionesParticipacionesPatrimonioPropias}}"></td>
                             </tr>
                             <tr>
-                                <td colspan="3"></td><td colspan="2">V. Resultados de ejercicios anteriores.</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->resultadosEjerciciosAnteriores}}"></td>
+                                <td colspan="3"></td><td colspan="2">V. Resultados de ejercicios anteriores.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->resultadosEjerciciosAnteriores}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->patrimonioNeto->resultadosEjerciciosAnteriores}}"></td>
                             </tr>
                             <tr>
-                                <td colspan="3"></td><td colspan="2">VI. Otras aportaciones de socios.</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->otrasAportacionesSocios}}"></td>
+                                <td colspan="3"></td><td colspan="2">VI. Otras aportaciones de socios.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->otrasAportacionesSocios}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->patrimonioNeto->otrasAportacionesSocios}}"></td>
                             </tr>
                             <tr>
-                                <td colspan="3"></td><td colspan="2">VII. Resultado del ejercicio.</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->resultadoEjercicio}}"></td>
+                                <td colspan="3"></td><td colspan="2">VII. Resultado del ejercicio.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->resultadoEjercicio}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->patrimonioNeto->resultadoEjercicio}}"></td>
                             </tr>
                             <tr>
-                                <td colspan="3"></td><td colspan="2">VIII. (Dividendo a cuenta).</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->dividendoCuenta}}"></td>
+                                <td colspan="3"></td><td colspan="2">VIII. (Dividendo a cuenta).</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->dividendoCuenta}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->patrimonioNeto->dividendoCuenta}}"></td>
                             </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">A-2) Ajustes en patrimonio neto</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->ajustesPatrimonioNeto}}"></td>
+                            <td colspan="2"></td><td colspan="3">A-2) Ajustes en patrimonio neto</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->ajustesPatrimonioNeto}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->patrimonioNeto->ajustesPatrimonioNeto}}"></td>
                         </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">A-3) Subvenciones, donaciones y legados recibidos</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->subvencionesDonacionesLegados}}"></td>
+                            <td colspan="2"></td><td colspan="3">A-3) Subvenciones, donaciones y legados recibidos</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->patrimonioNeto->subvencionesDonacionesLegados}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->patrimonioNeto->subvencionesDonacionesLegados}}"></td>
                         </tr>
                     <tr>
-                        <td></td><td colspan="4"><h5>B) Pasivo No Corriente</h5></td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoNoCorriente->totalPasivoNoCorriente}}"></td>
+                        <td></td><td colspan="4"><h5>B) Pasivo No Corriente</h5></td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoNoCorriente->totalPasivoNoCorriente}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoNoCorriente->totalPasivoNoCorriente}}"></td>
                     </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">I. Provisiones a largo plazo.</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoNoCorriente->provisionesLargoPlazo}}"></td>
+                            <td colspan="2"></td><td colspan="3">I. Provisiones a largo plazo.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoNoCorriente->provisionesLargoPlazo}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoNoCorriente->provisionesLargoPlazo}}"></td>
                         </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">II. Deudas a largo plazo.</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoNoCorriente->totalDeudasLargoPlazo}}"></td>
+                            <td colspan="2"></td><td colspan="3">II. Deudas a largo plazo.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoNoCorriente->totalDeudasLargoPlazo}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoNoCorriente->totalDeudasLargoPlazo}}"></td>
                         </tr>
                             <tr>
-                                <td colspan="3"></td><td colspan="2">1. Deudas con entidades de crédito.</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoNoCorriente->deudasEntidadesCredito}}"></td>
+                                <td colspan="3"></td><td colspan="2">1. Deudas con entidades de crédito.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoNoCorriente->deudasEntidadesCredito}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoNoCorriente->deudasEntidadesCredito}}"></td>
                             </tr>
                             <tr>
-                                <td colspan="3"></td><td colspan="2">2. Acreedores por arrendamiento financiero</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoNoCorriente->acreedoresArrendamientoFinanciero}}"></td>
+                                <td colspan="3"></td><td colspan="2">2. Acreedores por arrendamiento financiero</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoNoCorriente->acreedoresArrendamientoFinanciero}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoNoCorriente->acreedoresArrendamientoFinanciero}}"></td>
                             </tr>
                             <tr>
-                                <td colspan="3"></td><td colspan="2">3. Otras deudas a largo plazo</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoNoCorriente->otrasDeudasLargoPlazo}}"></td>
+                                <td colspan="3"></td><td colspan="2">3. Otras deudas a largo plazo</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoNoCorriente->otrasDeudasLargoPlazo}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoNoCorriente->otrasDeudasLargoPlazo}}"></td>
                             </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">III. Deudas con empresas del grupo y asociadas a largo plazo.</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoNoCorriente->deudasEmpresasGrupo}}"></td>
+                            <td colspan="2"></td><td colspan="3">III. Deudas con empresas del grupo y asociadas a largo plazo.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoNoCorriente->deudasEmpresasGrupo}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoNoCorriente->deudasEmpresasGrupo}}"></td>
                         </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">IV. Pasivos por impuesto diferido.</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoNoCorriente->pasivosImpuestoDiferido}}"></td>
+                            <td colspan="2"></td><td colspan="3">IV. Pasivos por impuesto diferido.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoNoCorriente->pasivosImpuestoDiferido}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoNoCorriente->pasivosImpuestoDiferido}}"></td>
                         </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">V. Periodificaciones a largo plazo</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoNoCorriente->periodificacionesLargoPlazo}}"></td>
+                            <td colspan="2"></td><td colspan="3">V. Periodificaciones a largo plazo</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoNoCorriente->periodificacionesLargoPlazo}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoNoCorriente->periodificacionesLargoPlazo}}"></td>
                         </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">VI. Acreedores comerciales no corrientes</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoNoCorriente->acreedoresComercialesNoCorrientes}}"></td>
+                            <td colspan="2"></td><td colspan="3">VI. Acreedores comerciales no corrientes</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoNoCorriente->acreedoresComercialesNoCorrientes}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoNoCorriente->acreedoresComercialesNoCorrientes}}"></td>
                         </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">VII. Deuda con características especiales a largo plazo</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoNoCorriente->deudaCaracteristicasEspeciales}}"></td>
+                            <td colspan="2"></td><td colspan="3">VII. Deuda con características especiales a largo plazo</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoNoCorriente->deudaCaracteristicasEspeciales}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoNoCorriente->deudaCaracteristicasEspeciales}}"></td>
                         </tr>
                     <tr>
-                        <td></td><td colspan="4"><h5>C) Pasivo Corriente</h5></td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->totalPasivoCorriente}}"></td>
+                        <td></td><td colspan="4"><h5>C) Pasivo Corriente</h5></td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->totalPasivoCorriente}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoCorriente->totalPasivoCorriente}}"></td>
                     </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">I. Provisiones a corto plazo.</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->provisionesCortoPlazo}}"></td>
+                            <td colspan="2"></td><td colspan="3">I. Provisiones a corto plazo.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->provisionesCortoPlazo}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoCorriente->provisionesCortoPlazo}}"></td>
                         </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">II. Deudas a corto plazo.</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->totalDeudasCortoPlazo}}"></td>
+                            <td colspan="2"></td><td colspan="3">II. Deudas a corto plazo.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->totalDeudasCortoPlazo}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoCorriente->totalDeudasCortoPlazo}}"></td>
                         </tr>
                             <tr>
-                                <td colspan="3"></td><td colspan="2">1. Deuda con entidades de crédito.</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->deudaEntidadesCredito}}"></td>
+                                <td colspan="3"></td><td colspan="2">1. Deuda con entidades de crédito.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->deudaEntidadesCredito}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoCorriente->deudaEntidadesCredito}}"></td>
                             </tr>
                             <tr>
-                                <td colspan="3"></td><td colspan="2">2. Acreedores por arrendamiento financiero</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->acreedoresArrendamientoFinanciero}}"></td>
+                                <td colspan="3"></td><td colspan="2">2. Acreedores por arrendamiento financiero</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->acreedoresArrendamientoFinanciero}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoCorriente->acreedoresArrendamientoFinanciero}}"></td>
                             </tr>
                             <tr>
-                                <td colspan="3"></td><td colspan="2">3. Otras deudas a corto plazo</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->otrasDeudasCortoPlazo}}"></td>
+                                <td colspan="3"></td><td colspan="2">3. Otras deudas a corto plazo</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->otrasDeudasCortoPlazo}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoCorriente->otrasDeudasCortoPlazo}}"></td>
                             </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">III. Deudas con empresas del grupo y asociadas a corto plazo.</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->deudasEmpresasGrupo}}"></td>
+                            <td colspan="2"></td><td colspan="3">III. Deudas con empresas del grupo y asociadas a corto plazo.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->deudasEmpresasGrupo}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoCorriente->deudasEmpresasGrupo}}"></td>
                         </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">IV. Acreedores comerciales y otras cuentas a pagar.</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->totalAcreedoresComerciales_OtrasCuentas}}"></td>
+                            <td colspan="2"></td><td colspan="3">IV. Acreedores comerciales y otras cuentas a pagar.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->totalAcreedoresComerciales_OtrasCuentas}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoCorriente->totalAcreedoresComerciales_OtrasCuentas}}"></td>
                         </tr>
                             <tr>
-                                <td colspan="3"></td><td colspan="2">1. Proveedores.</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->totalProveedores}}"></td>
+                                <td colspan="3"></td><td colspan="2">1. Proveedores.</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->totalProveedores}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoCorriente->totalProveedores}}"></td>
                             </tr>
                                 <tr>
-                                    <td colspan="4"></td><td>a) Proveedores a largo plazo</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->proveedoresLargoPlazo}}"></td>
+                                    <td colspan="4"></td><td>a) Proveedores a largo plazo</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->proveedoresLargoPlazo}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoCorriente->proveedoresLargoPlazo}}"></td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4"></td><td>b) Proveedores a corto plazo</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->proveedoresCortoPlazo}}"></td>
+                                    <td colspan="4"></td><td>b) Proveedores a corto plazo</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->proveedoresCortoPlazo}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoCorriente->proveedoresCortoPlazo}}"></td>
                                 </tr>
                             <tr>
-                                <td colspan="3"></td><td colspan="2">2. Otros acreedores</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->otrosAcreedores}}"></td>
+                                <td colspan="3"></td><td colspan="2">2. Otros acreedores</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->otrosAcreedores}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoCorriente->otrosAcreedores}}"></td>
                             </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">V. Periodificaciones a corto plazo</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->periodificacionesCortoPlazo}}"></td>
+                            <td colspan="2"></td><td colspan="3">V. Periodificaciones a corto plazo</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->periodificacionesCortoPlazo}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoCorriente->periodificacionesCortoPlazo}}"></td>
                         </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">VI. Deuda con características especiales a corto plazo</td><td><input type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->deudaCaracteristicasEspecialesCortoPlazo}}"></td>
+                            <td colspan="2"></td><td colspan="3">VI. Deuda con características especiales a corto plazo</td><td><input readonly type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->deudaCaracteristicasEspecialesCortoPlazo}}"></td><td><input readonly type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoCorriente->deudaCaracteristicasEspecialesCortoPlazo}}"></td>
                         </tr>
                     <tr>
-                        <td width="11%"></td><td width="11%"></td><td width="11%"></td><td width="11%"></td><td width="46%"></td><td width="10%"></td>
+                        <td width="10%"></td><td width="10%"></td><td width="10%"></td><td width="10%"></td><td width="45%"></td><td width="10%"></td><td width="10%"></td>
                     </tr>
             </tbody>
         </table>

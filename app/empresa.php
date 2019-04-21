@@ -11,7 +11,7 @@ class Empresa extends Model
 
     public function balances()
     {
-        return $this->hasMany('App\Balance');
+        return $this->hasMany('App\Balance')->orderBy('anio', 'desc');
     }
 
     public function users()

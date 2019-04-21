@@ -15,15 +15,9 @@
                 </li>
                 <li class="nav-item">
                     <div class="dropdown">
-                        <a class="nav-link btn {{ request()->is('catalog') ? 'active' : '' }}" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Catálogo</a>
+                        <a class="nav-link btn {{ request()->is('catalog') ? 'active' : '' }}" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Empresas</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="{{url('/patinetes')}}" >Patinetes</a>
-                            <a class="dropdown-item" href="{{url('/bicicletas')}}" >Bicicletas</a>
-                            <a class="dropdown-item" href="{{url('/motocicletas')}}">Motocicletas</a>
-                            @if(Auth::check() && strcmp ( "admin" , Auth::user()->rol)==0)
-                                <hr>
-                                <a class="dropdown-item" href="{{url('/create')}}">Añadir producto</a>
-                            @endif
+                            <a class="dropdown-item" href="{{url('/empresas')}}" >Lista de Empresas</a>
                         </div>
                     </div>
                 </li>

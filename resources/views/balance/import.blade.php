@@ -4,7 +4,7 @@
         <div class="offset-md-3 col-md-6">
             <div class="card">
                 <div class="card-header text-center">
-                    Crear Empresa
+                    Importar Balance
                 </div>
                 <div class="card-body" style="padding:30px">
 
@@ -12,28 +12,18 @@
                         {{ csrf_field() }}
 
                         <div class="form-group">
-                            <label for="name">Nombre</label>
-                            <input type="text" name="name" id="name" class="form-control " required>
+                            <label for="anio">Año</label>
+                            <input type="number" name="anio" id="anio" class="form-control" required>
                         </div>
 
                         <div class="form-group">
-                            <label for="Cif">Cif</label>
-                            <input type="text" name="cif" id="brand" class="form-control" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="telefono">Telefono</label>
-                            <input type="number" name="telefono" id="telefono" class="form-control" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="direccion">Dirección</label>
-                            <input type="text" name="direccion" id="direccion" class="form-control" required>
+                            <label for="excel">Balance</label>
+                            <input type="file" name="excel" id="excel" class="form-control" required>
                         </div>
 
                         <div class="form-group text-center">
                             <button type="submit" class="btn btn-primary" style="padding:8px 100px;margin-top:25px;">
-                                Añadir Empresa
+                                Añadir Balance
                             </button>
                         </div>
                     </form>

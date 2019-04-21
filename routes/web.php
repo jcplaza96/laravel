@@ -26,6 +26,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/empresas/{empresa_id}/balances/{balance_id}/edit', 'BalancesController@getEdit');
     Route::put('/empresas/{empresa_id}/balances/{balance_id}/edit', 'BalancesController@putEdit');
+    Route::get('/empresas/{empresa_id}/balances/import', 'BalancesController@getImport');
+    Route::post('/empresas/{empresa_id}/balances/import', 'BalancesController@postImport');
     Route::get('/empresas/{empresa_id}/balances/add', 'BalancesController@getCreate');
     Route::post('/empresas/{empresa_id}/balances/add', 'BalancesController@postCreate');
     Route::get('/empresas/{empresa_id}/balances/{balance_id}', 'BalancesController@getDetails');

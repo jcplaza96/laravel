@@ -22,7 +22,7 @@
         </div>
     </div>
     <h3 class="mt-5">Balances</h3>
-    <table class="table mt-2">
+    <table class="table mt-2 table-hover">
     <thead class="thead-dark">
         <tr>
             <th>Año</th>
@@ -32,11 +32,12 @@
     </thead>
     <tbody>
         @foreach($arrayBalances as $balance)
-            <tr>
-                <td>{{$balance->anio}}</td>
-                <td>{{$balance->activo->totalActivo}}</td>
-                <td>{{$balance->pasivo->totalPasivo}}</td>
-            </tr>   
+                <tr class='clickable-row' data-href="{{ url('/empresas/'.$empresa->id.'/balances/'.$balance->id)}}">
+                    <td>{{$balance->anio}}</td>
+                    <td>{{$balance->activo->totalActivo}}</td>
+                    <td>{{$balance->pasivo->totalPasivo}}</td>
+                </tr>   
+            
         @endforeach
     </tbody>
   </table>

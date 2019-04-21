@@ -34,6 +34,8 @@ class EmpresasController extends Controller
         $e = new Empresa();
         $e->nombre = $empresa['name'];
         $e->cif = $empresa['cif'];
+        $e->telefono = $empresa['telefono'];
+        $e->direccion = $empresa['direccion'];
         $e->save();
 
         $e_u = new User_empresa();
