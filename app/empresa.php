@@ -14,6 +14,11 @@ class Empresa extends Model
         return $this->hasMany('App\Balance')->orderBy('anio', 'desc');
     }
 
+    public function perdidasGanancias()
+    {
+        return $this->hasMany('App\perdidasGanancias')->orderBy('anio', 'desc');
+    }
+
     public function users()
     {
         return $this->belongsToMany(User::class, 'User_empresa');

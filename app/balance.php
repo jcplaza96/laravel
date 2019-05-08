@@ -24,4 +24,5 @@ class Balance extends Model
         return $this->belongsTo('App\Empresa');
     }
 
+
 }
