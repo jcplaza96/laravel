@@ -21,12 +21,33 @@ class EmpresasController extends Controller
     
         $empresa = Empresa::findOrFail($id);
         $arrayBalances = $empresa->balances;
+        $arrayPerdidasGanancias = $empresa->perdidasGanancias;
 
-        return view('empresa.detalles', ['empresa'=>$empresa, 'arrayBalances'=>$arrayBalances]);
+        return view('empresa.detalles', ['empresa'=>$empresa, 'arrayBalances'=> $arrayBalances, 'arrayPerdidasGanancias' => $arrayPerdidasGanancias]);
     }
 
     public function getCreate(){
         return view('empresa.create');
+    }
+
+    public function getEdit($id)
+    {
+        $empresa = Empresa::findOrFail($id);
+        return view('empresa.edit',['empresa'=>$empresa]);
+    }
+
+    public function putEdit($id, Request $empresa)
+    {
+        $e = Empresa::findOrFail($id);
+
+        $e->nombre = $empresa['name'];
+        $e->cif = $empresa['cif'];
+        $e->direccion = $empresa[ 'direccion'];
+        $e->telefono = $empresa[ 'telefono'];
+        $e->save();
+
+
+        return $this->getDetails($id);
     }
 
     public function postCreate(Request $empresa){

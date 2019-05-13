@@ -61,11 +61,17 @@
                             </div>
                         </div>
 
-                        @if(env('GOOGLE_RECAPTCHA_KEY'))
-                            <div class="g-recaptcha" data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}"></div>
-                        @endif
+                        <div class="form-group row">
+                            <div class="col-md-6 offset-md-4">
+                                <div class="g-recaptcha" data-sitekey="{{env('GOOGLE_RECAPTCHA_KEY')}}"></div>
+                                @if ($errors->has('g-recaptcha-response'))
+                                    <span class="invalid-feedback" style="display:block">
+                                        <strong>{{$errors->first('g-recaptcha-response')}}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
-                        <script src='https://www.google.com/recaptcha/api.js'></script>
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-info">
@@ -80,4 +86,5 @@
         </div>
     </div>
 </div>
+{!! RecaptchaV3::initJs() !!}
 @endsection

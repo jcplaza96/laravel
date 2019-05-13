@@ -11,9 +11,10 @@
     <title>Gesinem Analisis Financiero</title>
 
     <script src="{{ asset('js/functions.js') }}" defer></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
-    <link href="{{ asset('css/estilos.scss') }}" rel="stylesheet">
+    <link href="{{ asset('css/prueba.scss') }}" rel="stylesheet">
 </head>
 <body>
     @include('partials.navbar');

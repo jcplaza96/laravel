@@ -41,7 +41,7 @@ class CreatePerdidasGananciasTable extends Migration
             $table->double('incorporacionActivoFinanciero');
             $table->double('ingresosConvenioAcreedores');
             $table->double('restoIngresosGastos');
-            $table->double('resultadoFInanciero');
+            $table->double('resultadoFinanciero');
             $table->double('resultadoAntesImpuestos');
             $table->double('impuestosBeneficios');
             $table->double('resultadoEjercicio');

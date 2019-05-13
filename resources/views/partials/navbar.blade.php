@@ -18,6 +18,8 @@
                         <a class="nav-link btn {{ request()->is('catalog') ? 'active' : '' }}" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Empresas</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="{{url('/empresas')}}" >Lista de Empresas</a>
+                            <hr>
+                            <a class="dropdown-item" href="{{url('/empresas')}}" >Lista de Empresas</a>
                         </div>
                     </div>
                 </li>
