@@ -25,14 +25,14 @@
             </div>
             <br>
         </div>
-        <div class="row">
-            <div class="col-md-12 mt-4">
-                @if(true)
-                    <a class="btn btn-warning" href="{{ url('/empresas/'.$empresa->id.'/edit')}}">Editar empresa</a>
-                @endif
-                <a class="btn btn-outline-dark" href="{{ url('/empresas')}}">Volver al listado</a>
-            </div>
-        </div>
+    </div>
+    <div class="mt-4">
+        @if(true)
+            <a class="btn btn-warning" href="{{ url('/empresas/'.$empresa->id.'/edit')}}">Editar empresa</a>
+        @endif
+        <a class="btn btn-success" href="{{ url('/empresas/'.$empresa->id.'/balances/add')}}">Crear Balance</a>
+        <a class="btn btn-success" href="{{ url('/empresas/'.$empresa->id.'/balances/import')}}">Importar Balance</a>
+        <a class="btn btn-outline-dark" href="{{ url('/empresas')}}">Volver al listado</a>
     </div>
     <h3 class="mt-5">Balances</h3>
     <table class="table mt-2 table-hover">

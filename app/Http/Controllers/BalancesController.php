@@ -17,12 +17,13 @@ use App\Patrimonioneto;
 
 class BalancesController extends Controller
 {
-    public function getCreate($empresa_id){
-        return view('balance.create', ['empresa'=>$empresa_id]);
+    public function getCreate( $empresa_id)
+    {
+        $i=0;
+        return view('balance.create',[ 'empresa_id' => $empresa_id, 'i' => $i]);
     }
 
     public function getDetails($empresa_id, $balance_id){
-    
         $balance = Balance::findOrFail($balance_id);
 
         $e = Empresa::findOrFail($empresa_id);
@@ -31,24 +32,20 @@ class BalancesController extends Controller
         return view('balance.detalles', ['balance'=>$balance, 'balanceAnterior'=>$balanceAnterior, 'empresa_id'=>$empresa_id]);
     }
 
-    public function postCreate(Request $request){
-
-        $e = new Empresa();
-        $e->nombre = $empresa['name'];
-        $e->cif = $empresa['cif'];
-        $e->save();
-
-        $e_u = new User_empresa();
-        $e_u->empresa_id = $e->id;
-        $e_u->user_id = Auth::user()->id;
-        $e_u->save();
-
-        return redirect('/');
-
-    }
-
     public function getImport($empresa_id){
         return view('balance.import', ['empresa'=>$empresa_id]);
+    }
+
+    public function getEdit($empresa_id, $balance_id)
+    {
+        $balance = Balance::findOrFail($balance_id);
+
+        $i=0;
+
+        $e = Empresa::findOrFail($empresa_id);
+        $balanceAnterior = $e->balances()->where('anio', $balance->anio - 1)->firstOrFail();
+
+        return view('balance.edit', ['balance' => $balance, 'balanceAnterior' => $balanceAnterior, 'empresa_id' => $empresa_id, 'i' => $i]);
     }
 
     public function postImport($empresa_id, Request $request){
@@ -60,8 +57,234 @@ class BalancesController extends Controller
         if ($request->hasFile('excel')) {
             $excel = $request->file('excel');
             $arrayDatos = Excel::toArray(new BalancesImport, $request->file('excel'));
-            $this->importExcel($request->anio, $empresa_id, $arrayDatos[0]);
+            return $this->importExcel($request->anio, $empresa_id, $arrayDatos[0]);
         } 
+    }
+
+    public function postCreate(Request $arrayDatos, $empresa_id)
+    {
+        $e = Empresa::findOrFail($empresa_id);
+
+        $anio = $arrayDatos['balance'][1][0];
+        if ($e->balances()->where('anio', $anio)->first() === null) {
+            for ($i = 0; $i <= 1; $i++) {
+
+                $balance = new Balance();
+                $balance->empresa_id = $empresa_id;
+                $balance->anio = $anio;
+                $balance->save();
+
+                if ($i == 0) {
+                    $balance_id = $balance->id;
+                }
+
+                $activo = new Activo();
+                $activo->balance_id = $balance->id;
+                $activo->totalActivo = $arrayDatos['balance'][2][$i];
+                $activo->save();
+
+                $activoNoCorriente = new Activonocorriente();
+                $activoNoCorriente->activo_id = $activo->id;
+                $activoNoCorriente->inmovilizadoIntangible = $arrayDatos['balance'][4][$i];
+                $activoNoCorriente->inmovilizadoMaterial = $arrayDatos['balance'][5][$i];
+                $activoNoCorriente->inversionesInmoviliarias = $arrayDatos['balance'][6][$i];
+                $activoNoCorriente->inversionesEmpresasGrupo = $arrayDatos['balance'][7][$i];
+                $activoNoCorriente->inversionesFinancierasLargoPlazo = $arrayDatos['balance'][8][$i];
+                $activoNoCorriente->activosImpuestoDiferido = $arrayDatos['balance'][9][$i];
+                $activoNoCorriente->deudoresComercialesNoCorriente = $arrayDatos['balance'][10][$i];
+                $activoNoCorriente->totalActivoNoCorriente = $arrayDatos['balance'][3][$i];
+                $activoNoCorriente->save();
+
+                $activoCorriente = new Activocorriente();
+                $activoCorriente->activo_id = $activo->id;
+                $activoCorriente->existencias = $arrayDatos['balance'][12][$i];
+                $activoCorriente->totalDeudoresComerciales = $arrayDatos['balance'][13][$i];
+                $activoCorriente->totalClientesVentas = $arrayDatos['balance'][14][$i];
+                $activoCorriente->ClientesVentasLargoPlazo = $arrayDatos['balance'][15][$i];
+                $activoCorriente->ClientesVentasCortoPlazo = $arrayDatos['balance'][16][$i];
+                $activoCorriente->accionistasDesembolsosExigidos = $arrayDatos['balance'][17][$i];
+                $activoCorriente->otrosDeudores = $arrayDatos['balance'][18][$i];
+                $activoCorriente->inversionesEmpresasGrupo = $arrayDatos['balance'][19][$i];
+                $activoCorriente->inversionesFinancierasCortoPlazo = $arrayDatos['balance'][20][$i];
+                $activoCorriente->periodificacionesCortoPlazo = $arrayDatos['balance'][21][$i];
+                $activoCorriente->efectivoActivosLiquidos = $arrayDatos['balance'][22][$i];
+                $activoCorriente->totalActivoCorriente = $arrayDatos['balance'][11][$i];
+                $activoCorriente->save();
+
+                $pasivo = new Pasivo();
+                $pasivo->balance_id = $balance->id;
+                $pasivo->totalPasivo = $arrayDatos['balance'][23][$i];
+                $pasivo->save();
+
+                $pasivoNoCorriente = new Pasivonocorriente();
+                $pasivoNoCorriente->pasivo_id = $pasivo->id;
+                $pasivoNoCorriente->provisionesLargoPlazo  = $arrayDatos['balance'][41][$i];
+                $pasivoNoCorriente->totalDeudasLargoPlazo = $arrayDatos['balance'][42][$i];
+                $pasivoNoCorriente->deudasEntidadesCredito = $arrayDatos['balance'][43][$i];
+                $pasivoNoCorriente->acreedoresArrendamientoFinanciero = $arrayDatos['balance'][44][$i];
+                $pasivoNoCorriente->otrasDeudasLargoPlazo = $arrayDatos['balance'][45][$i];
+                $pasivoNoCorriente->deudasEmpresasGrupo = $arrayDatos['balance'][46][$i];
+                $pasivoNoCorriente->pasivosImpuestoDiferido = $arrayDatos['balance'][47][$i];
+                $pasivoNoCorriente->periodificacionesLargoPlazo = $arrayDatos['balance'][48][$i];
+                $pasivoNoCorriente->acreedoresComercialesNoCorrientes = $arrayDatos['balance'][49][$i];
+                $pasivoNoCorriente->deudaCaracteristicasEspeciales = $arrayDatos['balance'][50][$i];
+                $pasivoNoCorriente->totalPasivoNoCorriente = $arrayDatos['balance'][40][$i];
+                $pasivoNoCorriente->save();
+
+                $pasivoCorriente = new Pasivocorriente();
+                $pasivoCorriente->pasivo_id = $pasivo->id;
+                $pasivoCorriente->provisionesCortoPlazo = $arrayDatos['balance'][52][$i];
+                $pasivoCorriente->totalDeudasCortoPlazo = $arrayDatos['balance'][53][$i];
+                $pasivoCorriente->deudaEntidadesCredito = $arrayDatos['balance'][54][$i];
+                $pasivoCorriente->acreedoresArrendamientoFinanciero = $arrayDatos['balance'][55][$i];
+                $pasivoCorriente->otrasDeudasCortoPlazo = $arrayDatos['balance'][56][$i];
+                $pasivoCorriente->deudasEmpresasGrupo = $arrayDatos['balance'][57][$i];
+                $pasivoCorriente->totalAcreedoresComerciales_OtrasCuentas = $arrayDatos['balance'][58][$i];
+                $pasivoCorriente->totalProveedores = $arrayDatos['balance'][59][$i];
+                $pasivoCorriente->proveedoresLargoPlazo = $arrayDatos['balance'][60][$i];
+                $pasivoCorriente->proveedoresCortoPlazo = $arrayDatos['balance'][61][$i];
+                $pasivoCorriente->otrosAcreedores = $arrayDatos['balance'][62][$i];
+                $pasivoCorriente->periodificacionesCortoPlazo = $arrayDatos['balance'][63][$i];
+                $pasivoCorriente->deudaCaracteristicasEspecialesCortoPlazo = $arrayDatos['balance'][64][$i];
+                $pasivoCorriente->totalPasivoCorriente = $arrayDatos['balance'][51][$i];
+                $pasivoCorriente->save();
+
+                $patrimonioNeto = new Patrimonioneto();
+                $patrimonioNeto->pasivo_id = $pasivo->id;
+                $patrimonioNeto->totalFondosPropios = $arrayDatos['balance'][25][$i];
+                $patrimonioNeto->totalCapital = $arrayDatos['balance'][26][$i];
+                $patrimonioNeto->capitalEscriturado = $arrayDatos['balance'][27][$i];
+                $patrimonioNeto->capitalNoExigido = $arrayDatos['balance'][28][$i];
+                $patrimonioNeto->primaEmision = $arrayDatos['balance'][29][$i];
+                $patrimonioNeto->totalReservas = $arrayDatos['balance'][30][$i];
+                $patrimonioNeto->reservaCapitalizacion = $arrayDatos['balance'][31][$i];
+                $patrimonioNeto->otrasReservas = $arrayDatos['balance'][32][$i];
+                $patrimonioNeto->accionesParticipacionesPatrimonioPropias = $arrayDatos['balance'][33][$i];
+                $patrimonioNeto->resultadosEjerciciosAnteriores = $arrayDatos['balance'][34][$i];
+                $patrimonioNeto->otrasAportacionesSocios = $arrayDatos['balance'][35][$i];
+                $patrimonioNeto->resultadoEjercicio = $arrayDatos['balance'][36][$i];
+                $patrimonioNeto->dividendoCuenta = $arrayDatos['balance'][37][$i];
+                $patrimonioNeto->ajustesPatrimonioNeto = $arrayDatos['balance'][38][$i];
+                $patrimonioNeto->subvencionesDonacionesLegados = $arrayDatos['balance'][39][$i];
+                $patrimonioNeto->totalPatrimonioNeto = $arrayDatos['balance'][24][$i];
+                $patrimonioNeto->save();
+
+                if ($e->balances()->where('anio', $anio - 1)->first() != null) {
+                    $i = 2;
+                } else {
+                    $anio -= 1;
+                }
+            }
+            return $this->getDetails($empresa_id, $balance_id);
+        }
+        
+    }
+
+    public function putEdit(Request $arrayDatos, $empresa_id)
+    {
+
+        $e = Empresa::findOrFail($empresa_id);
+
+        $anio = $arrayDatos['balance'][1][0];
+
+        $balance = $e->balances()->where('anio', $anio)->firstOrFail();
+        if ($balance != null) {
+            for ($i = 0; $i <= 1; $i++) {
+
+                $balance->empresa_id = $empresa_id;
+                $balance->save();
+
+                if ($i == 0) {
+                    $balance_id = $balance->id;
+                }
+
+                $activo = $balance->activo;
+                $activo->totalActivo = $arrayDatos['balance'][2][$i];
+                $activo->save();
+                $activoNoCorriente = $activo->activoNoCorriente;
+                $activoNoCorriente->inmovilizadoIntangible = $arrayDatos['balance'][4][$i];
+                $activoNoCorriente->inmovilizadoMaterial = $arrayDatos['balance'][5][$i];
+                $activoNoCorriente->inversionesInmoviliarias = $arrayDatos['balance'][6][$i];
+                $activoNoCorriente->inversionesEmpresasGrupo = $arrayDatos['balance'][7][$i];
+                $activoNoCorriente->inversionesFinancierasLargoPlazo = $arrayDatos['balance'][8][$i];
+                $activoNoCorriente->activosImpuestoDiferido = $arrayDatos['balance'][9][$i];
+                $activoNoCorriente->deudoresComercialesNoCorriente = $arrayDatos['balance'][10][$i];
+                $activoNoCorriente->totalActivoNoCorriente = $arrayDatos['balance'][3][$i];
+                $activoNoCorriente->save();
+
+                $activoCorriente = $activo->activoCorriente;
+                $activoCorriente->existencias = $arrayDatos['balance'][12][$i];
+                $activoCorriente->totalDeudoresComerciales = $arrayDatos['balance'][13][$i];
+                $activoCorriente->totalClientesVentas = $arrayDatos['balance'][14][$i];
+                $activoCorriente->ClientesVentasLargoPlazo = $arrayDatos['balance'][15][$i];
+                $activoCorriente->ClientesVentasCortoPlazo = $arrayDatos['balance'][16][$i];
+                $activoCorriente->accionistasDesembolsosExigidos = $arrayDatos['balance'][17][$i];
+                $activoCorriente->otrosDeudores = $arrayDatos['balance'][18][$i];
+                $activoCorriente->inversionesEmpresasGrupo = $arrayDatos['balance'][19][$i];
+                $activoCorriente->inversionesFinancierasCortoPlazo = $arrayDatos['balance'][20][$i];
+                $activoCorriente->periodificacionesCortoPlazo = $arrayDatos['balance'][21][$i];
+                $activoCorriente->efectivoActivosLiquidos = $arrayDatos['balance'][22][$i];
+                $activoCorriente->totalActivoCorriente = $arrayDatos['balance'][11][$i];
+                $activoCorriente->save();
+
+                $pasivo = $balance->pasivo;
+                $pasivo->totalPasivo = $arrayDatos['balance'][23][$i];
+                $pasivo->save();
+
+                $pasivoNoCorriente = $pasivo->pasivoNoCorriente;
+                $pasivoNoCorriente->provisionesLargoPlazo  = $arrayDatos['balance'][41][$i];
+                $pasivoNoCorriente->totalDeudasLargoPlazo = $arrayDatos['balance'][42][$i];
+                $pasivoNoCorriente->deudasEntidadesCredito = $arrayDatos['balance'][43][$i];
+                $pasivoNoCorriente->acreedoresArrendamientoFinanciero = $arrayDatos['balance'][44][$i];
+                $pasivoNoCorriente->otrasDeudasLargoPlazo = $arrayDatos['balance'][45][$i];
+                $pasivoNoCorriente->deudasEmpresasGrupo = $arrayDatos['balance'][46][$i];
+                $pasivoNoCorriente->pasivosImpuestoDiferido = $arrayDatos['balance'][47][$i];
+                $pasivoNoCorriente->periodificacionesLargoPlazo = $arrayDatos['balance'][48][$i];
+                $pasivoNoCorriente->acreedoresComercialesNoCorrientes = $arrayDatos['balance'][49][$i];
+                $pasivoNoCorriente->deudaCaracteristicasEspeciales = $arrayDatos['balance'][50][$i];
+                $pasivoNoCorriente->totalPasivoNoCorriente = $arrayDatos['balance'][40][$i];
+                $pasivoNoCorriente->save();
+
+                $pasivoCorriente = $pasivo->pasivoCorriente;
+                $pasivoCorriente->provisionesCortoPlazo = $arrayDatos['balance'][52][$i];
+                $pasivoCorriente->totalDeudasCortoPlazo = $arrayDatos['balance'][53][$i];
+                $pasivoCorriente->deudaEntidadesCredito = $arrayDatos['balance'][54][$i];
+                $pasivoCorriente->acreedoresArrendamientoFinanciero = $arrayDatos['balance'][55][$i];
+                $pasivoCorriente->otrasDeudasCortoPlazo = $arrayDatos['balance'][56][$i];
+                $pasivoCorriente->deudasEmpresasGrupo = $arrayDatos['balance'][57][$i];
+                $pasivoCorriente->totalAcreedoresComerciales_OtrasCuentas = $arrayDatos['balance'][58][$i];
+                $pasivoCorriente->totalProveedores = $arrayDatos['balance'][59][$i];
+                $pasivoCorriente->proveedoresLargoPlazo = $arrayDatos['balance'][60][$i];
+                $pasivoCorriente->proveedoresCortoPlazo = $arrayDatos['balance'][61][$i];
+                $pasivoCorriente->otrosAcreedores = $arrayDatos['balance'][62][$i];
+                $pasivoCorriente->periodificacionesCortoPlazo = $arrayDatos['balance'][63][$i];
+                $pasivoCorriente->deudaCaracteristicasEspecialesCortoPlazo = $arrayDatos['balance'][64][$i];
+                $pasivoCorriente->totalPasivoCorriente = $arrayDatos['balance'][51][$i];
+                $pasivoCorriente->save();
+
+                $patrimonioNeto = $pasivo->patrimonioNeto;
+                $patrimonioNeto->totalFondosPropios = $arrayDatos['balance'][25][$i];
+                $patrimonioNeto->totalCapital = $arrayDatos['balance'][26][$i];
+                $patrimonioNeto->capitalEscriturado = $arrayDatos['balance'][27][$i];
+                $patrimonioNeto->capitalNoExigido = $arrayDatos['balance'][28][$i];
+                $patrimonioNeto->primaEmision = $arrayDatos['balance'][29][$i];
+                $patrimonioNeto->totalReservas = $arrayDatos['balance'][30][$i];
+                $patrimonioNeto->reservaCapitalizacion = $arrayDatos['balance'][31][$i];
+                $patrimonioNeto->otrasReservas = $arrayDatos['balance'][32][$i];
+                $patrimonioNeto->accionesParticipacionesPatrimonioPropias = $arrayDatos['balance'][33][$i];
+                $patrimonioNeto->resultadosEjerciciosAnteriores = $arrayDatos['balance'][34][$i];
+                $patrimonioNeto->otrasAportacionesSocios = $arrayDatos['balance'][35][$i];
+                $patrimonioNeto->resultadoEjercicio = $arrayDatos['balance'][36][$i];
+                $patrimonioNeto->dividendoCuenta = $arrayDatos['balance'][37][$i];
+                $patrimonioNeto->ajustesPatrimonioNeto = $arrayDatos['balance'][38][$i];
+                $patrimonioNeto->subvencionesDonacionesLegados = $arrayDatos['balance'][39][$i];
+                $patrimonioNeto->totalPatrimonioNeto = $arrayDatos['balance'][24][$i];
+                $patrimonioNeto->save();
+
+                $balance = $e->balances()->where('anio', $anio-1)->first();
+            }
+            return $this->getDetails($empresa_id, $balance_id);
+        }
     }
 
     public function importExcel($anio, $empresa, $arrayDatos){
@@ -77,6 +300,10 @@ class BalancesController extends Controller
                 $balance->empresa_id = $empresa;
                 $balance->anio = $anio;
                 $balance->save();
+
+                if ($i == 6) {
+                    $balance_id = $balance->id;
+                }
         
                 $activo = new Activo();
                 $activo->balance_id = $balance->id;
@@ -176,6 +403,7 @@ class BalancesController extends Controller
                     $anio-=1;
                 }
             }
+            return $this->getDetails($empresa, $balance_id);
         }
     }
 }

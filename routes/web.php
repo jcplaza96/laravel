@@ -33,6 +33,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/empresas/{empresa_id}/balances/add', 'BalancesController@getCreate');
     Route::post('/empresas/{empresa_id}/balances/add', 'BalancesController@postCreate');
     Route::get('/empresas/{empresa_id}/balances/{balance_id}', 'BalancesController@getDetails');
+    Route::get('/empresas/{empresa_id}/balances/{balance_id}/edit', 'BalancesController@getEdit');
+    Route::put('/empresas/{empresa_id}/balances/{balance_id}/edit', 'BalancesController@putEdit');
 
     Route::get( '/empresas/{empresa_id}/perdidasGanancias/{balance_id}/edit', 'perdidasGananciasController@getEdit');
     Route::put('/empresas/{empresa_id}/perdidasGanancias/{balance_id}/edit', 'perdidasGananciasController@putEdit');

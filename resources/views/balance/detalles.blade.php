@@ -1,8 +1,11 @@
 @extends('layouts.master')
 @section('content')
     <h2><a href="{{ url('/empresas/'.$empresa_id)}}"><i class="fas fa-arrow-circle-left"></a></i> Detalles del balance</h2>
-    <form>
-        <table class="table table-bordered table-responsive table-striped mt-5 w-100">
+    <form class="mt-3">
+        <div class="text-right">
+            <a class="btn btn-warning" href="{{action('BalancesController@getEdit', [$empresa_id, $balance])}}">Editar</a>
+        </div>
+        <table class="table table-bordered table-responsive mt-2 table-striped w-100">
             <tbody >
                 <tr class="text-center">
                     <td colspan="5"></td><td>{{$balance->anio}}</td><td>{{$balanceAnterior->anio}}</td>
