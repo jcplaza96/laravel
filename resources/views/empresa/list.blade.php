@@ -17,7 +17,7 @@
                         </div>
                         <div class="col-lg-12">
                             <p><b>Cif:</b> {{$empresa->cif}}</p>
-                            <p><b>Telefono:</b> {{$empresa->telefono}}</p>
+                            <p><b>Teléfono:</b> {{$empresa->telefono}}</p>
                             <p><b>Dirección:</b> {{$empresa->direccion}}</p>
                         </div>
                     </div>

@@ -26,56 +26,64 @@
             <br>
         </div>
     </div>
-    <div class="mt-4">
+    <div class="mt-4 mb-5">
         @if(true)
             <a class="btn btn-warning" href="{{ url('/empresas/'.$empresa->id.'/edit')}}">Editar empresa</a>
         @endif
-        <a class="btn btn-success" href="{{ url('/empresas/'.$empresa->id.'/balances/add')}}">Crear Balance</a>
-        <a class="btn btn-success" href="{{ url('/empresas/'.$empresa->id.'/balances/import')}}">Importar Balance</a>
         <a class="btn btn-outline-dark" href="{{ url('/empresas')}}">Volver al listado</a>
     </div>
-    <h3 class="mt-5">Balances</h3>
+
+    <h2 class="mt-5 d-inline">Balances</h2>
+    <div class="text-right">
+        <a class="btn btn-success alig" href="{{ url('/empresas/'.$empresa->id.'/balances/add')}}">Crear Balance</a>
+        <a class="btn btn-success" href="{{ url('/empresas/'.$empresa->id.'/balances/import')}}">Importar Balance</a>
+    </div>
+    
+    <table class="table mt-2 mb-5 table-hover">
+        <thead class="thead-dark">
+            <tr>
+                <th>Año</th>
+                <th>Total Activo</th>
+                <th>Total Pasivo</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($arrayBalances as $balance)
+                    <tr class='clickable-row' data-href="{{ url('/empresas/'.$empresa->id.'/balances/'.$balance->id)}}">
+                        <td>{{$balance->anio}}</td>
+                        <td>{{$balance->activo->totalActivo}}</td>
+                        <td>{{$balance->pasivo->totalPasivo}}</td>
+                    </tr>   
+            @endforeach
+        </tbody>
+    </table>
+
+
+    <h2 class="mt-5 d-inline">Informes de perdidas y ganancias</h2>
+    <div class="text-right">
+        <a class="btn btn-success alig" href="{{ url('/empresas/'.$empresa->id.'/perdidasGanancias/add')}}">Crear Informe</a>
+        <a class="btn btn-success" href="{{ url('/empresas/'.$empresa->id.'/perdidasGanancias/import')}}">Importar Informe</a>
+    </div>
     <table class="table mt-2 table-hover">
-    <thead class="thead-dark">
-        <tr>
-            <th>Año</th>
-            <th>Total Activo</th>
-            <th>Total Pasivo</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($arrayBalances as $balance)
-                <tr class='clickable-row' data-href="{{ url('/empresas/'.$empresa->id.'/balances/'.$balance->id)}}">
-                    <td>{{$balance->anio}}</td>
-                    <td>{{$balance->activo->totalActivo}}</td>
-                    <td>{{$balance->pasivo->totalPasivo}}</td>
-                </tr>   
-            
-        @endforeach
-    </tbody>
-  </table>
-  <h3 class="mt-5">Perdidas y Ganancias</h3>
-    <table class="table mt-2 table-hover">
-    <thead class="thead-dark">
-        <tr>
-            <th>Año</th>
-            <th>Resultado de Explotación</th>
-            <th>Resultado Financiero</th>
-            <th>Resultado antes de impuestos</th>
-            <th>Resultado del ejercicio</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach($arrayPerdidasGanancias as $perdidasGanancias)
-                <tr class='clickable-row' data-href="{{ url('/empresas/'.$empresa->id.'/perdidasGanancias/'.$perdidasGanancias->id)}}">
-                    <td>{{$perdidasGanancias->anio}}</td>
-                    <td>{{$perdidasGanancias->resultadoExplotacion}}</td>
-                    <td>{{$perdidasGanancias->resultadoFinanciero}}</td>
-                    <td>{{$perdidasGanancias->resultadoAntesImpuestos}}</td>
-                    <td>{{$perdidasGanancias->resultadoEjercicio}}</td>
-                </tr>   
-            
-        @endforeach
-    </tbody>
+        <thead class="thead-dark">
+            <tr>
+                <th>Año</th>
+                <th>Resultado de Explotación</th>
+                <th>Resultado Financiero</th>
+                <th>Resultado antes de impuestos</th>
+                <th>Resultado del ejercicio</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($arrayPerdidasGanancias as $perdidasGanancias)
+                    <tr class='clickable-row' data-href="{{ url('/empresas/'.$empresa->id.'/perdidasGanancias/'.$perdidasGanancias->id)}}">
+                        <td>{{$perdidasGanancias->anio}}</td>
+                        <td>{{$perdidasGanancias->resultadoExplotacion}}</td>
+                        <td>{{$perdidasGanancias->resultadoFinanciero}}</td>
+                        <td>{{$perdidasGanancias->resultadoAntesImpuestos}}</td>
+                        <td>{{$perdidasGanancias->resultadoEjercicio}}</td>
+                    </tr>     
+            @endforeach
+        </tbody>
   </table>
 @stop

@@ -1,8 +1,11 @@
 @extends('layouts.master')
 @section('content')
     <h2><a href="{{ url('/empresas/'.$empresa_id)}}"><i class="fas fa-arrow-circle-left"></a></i> Detalles del informe de perdidas y ganancias</h2>
-    <form>
-        <table class="table table-bordered table-responsive table-striped mt-5 w-100">
+    <div class="text-right">
+        <a class="btn btn-warning" href="{{action('perdidasGananciasController@getEdit', [$empresa_id, $perdidasGanancias])}}">Editar</a>
+    </div>
+    <form class="mt-3">
+        <table class="table table-bordered table-responsive table-striped mt-2 w-100">
             <tbody>
                 <tr class="text-center">
                     <td colspan="5"></td><td>{{$perdidasGanancias->anio}}</td><td>{{$perdidasGananciasAnterior->anio}}</td>
@@ -50,7 +53,7 @@
                         <td></td><td colspan="4">13. Ingresos financieros</td><td><input class="input-right" readonly type="number" min="0" step="any" value="{{$perdidasGanancias->totalIngresosFinancieros}}"></td><td><input class="input-right" readonly type="number" min="0" step="any" value="{{$perdidasGananciasAnterior->totalIngresosFinancieros}}"></td>
                     </tr>
                         <tr>
-                            <td colspan="2"></td><td colspan="3">a) Imputación de subvenciones, donaciones y legados de carácter financiero</td><td><input class="input-right" readonly type="number" min="0" step="any" value="{{$perdidasGanancias->input class="input-right"acionSubvencionesFinanciero}}"></td><td><input class="input-right" readonly type="number" min="0" step="any" value="{{$perdidasGananciasAnterior->input class="input-right"acionSubvencionesFinanciero}}"></td>
+                            <td colspan="2"></td><td colspan="3">a) Imputación de subvenciones, donaciones y legados de carácter financiero</td><td><input class="input-right" readonly type="number" min="0" step="any" value="{{$perdidasGanancias->inputacionSubvencionesFinanciero}}"></td><td><input class="input-right" readonly type="number" min="0" step="any" value="{{$perdidasGananciasAnterior->inputacionSubvencionesFinanciero}}"></td>
                         </tr>
                         <tr>
                             <td colspan="2"></td><td colspan="3">b) Otros ingresos financieros</td><td><input class="input-right" readonly type="number" min="0" step="any" value="{{$perdidasGanancias->otrosIngresosFinancieros}}"></td><td><input class="input-right" readonly type="number" min="0" step="any" value="{{$perdidasGananciasAnterior->otrosIngresosFinancieros}}"></td>
@@ -80,7 +83,7 @@
                             <td colspan="2"></td><td colspan="3">c) Resto de ingresos y gastos</td><td><input class="input-right" readonly type="number" min="0" step="any" value="{{$perdidasGanancias->restoIngresosGastos}}"></td><td><input class="input-right" readonly type="number" min="0" step="any" value="{{$perdidasGananciasAnterior->restoIngresosGastos}}"></td>
                         </tr>
                 <tr>
-                    <td colspan="5"><h4>B) RESULTADO FINANCIERO</h4><td><input class="input-right" readonly class="w-100" type="number" min="0" step="any" value="{{$perdidasGanancias->resultadoFInanciero}}"></td><td><input class="input-right" readonly class="w-100" type="number" min="0" step="any" value="{{$perdidasGananciasAnterior->resultadoFInanciero}}"></td>
+                    <td colspan="5"><h4>B) RESULTADO FINANCIERO</h4><td><input class="input-right" readonly class="w-100" type="number" min="0" step="any" value="{{$perdidasGanancias->resultadoFinanciero}}"></td><td><input class="input-right" readonly class="w-100" type="number" min="0" step="any" value="{{$perdidasGananciasAnterior->resultadoFinanciero}}"></td>
                 </tr>
                 <tr>
                     <td colspan="5"><h4>C) RESULTADO ANTES DE IMPUESTOS</h4><td><input class="input-right" readonly class="w-100" type="number" min="0" step="any" value="{{$perdidasGanancias->resultadoAntesImpuestos}}"></td><td><input class="input-right" readonly class="w-100" type="number" min="0" step="any" value="{{$perdidasGananciasAnterior->resultadoAntesImpuestos}}"></td>
@@ -92,7 +95,7 @@
                     <td colspan="5"><h4>D. RESULTADO DEL EJERCICIO</h4><td><input class="input-right" readonly class="w-100" type="number" min="0" step="any" value="{{$perdidasGanancias->resultadoEjercicio}}"></td><td><input class="input-right" readonly class="w-100" type="number" min="0" step="any" value="{{$perdidasGananciasAnterior->resultadoEjercicio}}"></td>
                 </tr>
                 
-                <tr>
+                <tr class="invisible">
                     <td width="10%"></td><td width="10%"></td><td width="10%"></td><td width="10%"></td><td width="45%"></td><td width="10%"></td><td width="10%"></td>
                 </tr>
             </tbody>

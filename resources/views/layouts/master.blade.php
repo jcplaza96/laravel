@@ -20,8 +20,8 @@
     <link href="{{ asset('css/prueba.scss') }}" rel="stylesheet">
 </head>
 <body>
-    @include('partials.navbar');
-    <div	class="container">
+    @include('partials.navbar')
+    <div	class="container mt-4">
         @yield('content')
     </div>
 

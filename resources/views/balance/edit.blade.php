@@ -205,7 +205,7 @@
                         <tr>
                             <td colspan="2"></td><td colspan="3">VI. Deuda con características especiales a corto plazo</td><td><input class="input-right" name="balance[{{++$i}}][]" type="number" min="0" step="any" value="{{$balance->pasivo->pasivoCorriente->deudaCaracteristicasEspecialesCortoPlazo}}"></td><td><input class="input-right" name="balance[{{$i}}][]" type="number" min="0" step="any" value="{{$balanceAnterior->pasivo->pasivoCorriente->deudaCaracteristicasEspecialesCortoPlazo}}"></td>
                         </tr>
-                    <tr>
+                    <tr class="invisible">
                         <td width="10%"></td><td width="10%"></td><td width="10%"></td><td width="10%"></td><td width="45%"></td><td width="10%"></td><td width="10%"></td>
                     </tr>
             </tbody>

@@ -11,7 +11,7 @@
         <table class="table table-bordered table-responsive table-striped mt-2 w-100">
             <tbody >
                 <tr class="text-center">
-                    <td colspan="5"></td><td><input required id="anio" class="input-right" name="balance[{{++$i}}][]" type="number" min="1" step="any" value=""></td><td><input id="anioAnterior" readonly class="input-right" name="balance[{{$i}}][]" type="number" min="1" step="any" value=""></td>
+                    <td colspan="5"></td><td><input required id="anio" class="input-right" name="balance[{{++$i}}][]" type="number" min="2" step="any" value=""></td><td><input id="anioAnterior" readonly class="input-right" name="balance[{{$i}}][]" type="number" min="1" step="any" value=""></td>
                 </tr>
                 <tr>
                     <td colspan="5"><h3>Activo</h3><td><input class="input-right" name="balance[{{++$i}}][]" type="number" min="0" step="any" value="0"></td><td><input class="input-right" name="balance[{{$i}}][]"  type="number" min="0" step="any" value="0"></td>
@@ -205,7 +205,7 @@
                         <tr>
                             <td colspan="2"></td><td colspan="3">VI. Deuda con características especiales a corto plazo</td><td><input class="input-right" name="balance[{{++$i}}][]"  type="number" min="0" step="any" value="0"></td><td><input class="input-right" name="balance[{{$i}}][]"  type="number" min="0" step="any" value="0"></td>
                         </tr>
-                    <tr>
+                    <tr class="invisible">
                         <td width="10%"></td><td width="10%"></td><td width="10%"></td><td width="10%"></td><td width="45%"></td><td width="10%"></td><td width="10%"></td>
                     </tr>
             </tbody>
