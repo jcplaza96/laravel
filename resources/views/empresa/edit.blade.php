@@ -4,7 +4,7 @@
         <div class="offset-md-3 col-md-6">
             <div class="card">
                 <div class="card-header text-center">
-                    Editar Empresa
+                    <h2><a href="{{ url('/empresas/'.$empresa->id)}}"><i class="fas fa-arrow-circle-left mr-2"></a></i>Editar Empresa</h2>
                 </div>
                 <div class="card-body" style="padding:30px">
 
@@ -23,7 +23,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="telefono">Telefono</label>
+                            <label for="telefono">Teléfono</label>
                             <input type="number" name="telefono" id="telefono" class="form-control" value="{{$empresa->telefono}}" required>
                         </div>
 

@@ -10,7 +10,7 @@
         <ul class="navbar-nav ml-auto  mr-5">
             @if(Auth::check())
             <li class="nav-item">
-                <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{url('/')}}" >Home</a>
+                <a class="nav-link {{ request()->is('/') ? 'active' : '' }}" href="{{url('/')}}" >Inicio</a>
             </li>
             <li class="nav-item">
                 <div class="dropdown">

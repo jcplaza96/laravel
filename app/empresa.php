@@ -21,7 +21,7 @@ class Empresa extends Model
 
     public function users()
     {
-        return $this->belongsToMany(User::class, 'User_empresa');
+        return $this->belongsToMany(User::class, 'user_empresa');
     }
 
 

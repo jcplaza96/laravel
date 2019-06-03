@@ -17,23 +17,32 @@ use App\Patrimonioneto;
 
 class BalancesController extends Controller
 {
-    public function getCreate( $empresa_id)
+    public function getCreate($empresa_id)
     {
         $i=0;
         return view('balance.create',[ 'empresa_id' => $empresa_id, 'i' => $i]);
+    }
+
+    public function deleteBalance($empresa_id, $balance_id)
+    {
+        $balance = Balance::findOrFail($balance_id);
+        $balance->delete();
+
+        return app('App\Http\Controllers\EmpresasController')->getDetails($empresa_id);
     }
 
     public function getDetails($empresa_id, $balance_id){
         $balance = Balance::findOrFail($balance_id);
 
         $e = Empresa::findOrFail($empresa_id);
-        $balanceAnterior = $e->balances()->where('anio', $balance->anio-1)->firstOrFail();
+        $balanceAnterior = $e->balances()->where('anio', $balance->anio-1)->first();
+        if($balanceAnterior==null) $balanceAnterior=$balance;
 
         return view('balance.detalles', ['balance'=>$balance, 'balanceAnterior'=>$balanceAnterior, 'empresa_id'=>$empresa_id]);
     }
 
     public function getImport($empresa_id){
-        return view('balance.import', ['empresa'=>$empresa_id]);
+        return view('balance.import', ['empresa_id'=>$empresa_id]);
     }
 
     public function getEdit($empresa_id, $balance_id)
@@ -50,9 +59,10 @@ class BalancesController extends Controller
 
     public function postImport($empresa_id, Request $request){
 
-        /*$this->validate($request, [
-            'excel' => 'required|mimes:XLS|max:2048',
-        ]);*/
+
+        $request->validate([
+            'excel' => 'required|mimes:xls|max:2048',
+        ]);
 
         if ($request->hasFile('excel')) {
             $excel = $request->file('excel');

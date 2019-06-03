@@ -4,7 +4,7 @@
         <div class="offset-md-3 col-md-6">
             <div class="card">
                 <div class="card-header text-center">
-                    Importar Balance
+                    <h2><a href="{{ url('/empresas/'.$empresa_id)}}"><i class="fas fa-arrow-circle-left mr-2"></a></i>Importar cuenta</h2>
                 </div>
                 <div class="card-body" style="padding:30px">
 
@@ -13,7 +13,7 @@
 
                         <div class="form-group">
                             <label for="anio">Año</label>
-                            <input type="number" name="anio" id="anio" class="form-control" required>
+                            <input type="number" min="2" name="anio" id="anio" class="form-control" required>
                         </div>
 
                         <div class="form-group">

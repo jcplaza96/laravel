@@ -1,18 +1,31 @@
 @extends('layouts.master')
 @section('content')
-    <div class="container">
-        holaaaaa
-        {{-- @foreach( $arrayProductos as $producto )
-            <div class="col-xs-6 col-sm-4 col-md-3 text-center">
-                <a href="{{ url('/'. $producto->parentType->name."/".$producto->id ) }}">
-                    <img src="{{asset('assets/img/'.$producto->img)}}" style="height:200px"/>
-                    <h4 style="min-height:45px;margin:5px 0 10px 0">
-                        {{$producto->name}}
-                    </h4>
-                </a>
-            </div>
-        @endforeach --}}
+    <div class="row">
+        <div class="col-md-12 zoom"><div id="chart-div"></div></div>
+    </div>
+    
+    <?= $lava->render('PieChart', 'IMDB', 'chart-div') ?>
+    <?= $lava->render('PieChart', 'IMDB', 'chart-div2') ?>
 
-        <pre>{{print_r($arrayDatos, true)}}
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div id="chart-div2"></div>
+        </div>
+        </div>
+    </div>
     </div>
 @stop

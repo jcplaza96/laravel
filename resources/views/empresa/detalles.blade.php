@@ -4,10 +4,11 @@
         <div class="col-sm-4">
             <img src="{{asset('assets/img/logoGenerico.png')}}" style="width: 100%; max-width: 250px">
         </div>
-        <div class="col-sm-8 card">
-            <div class="text-center">
+        <div class="col-sm-8 card text-white bg-dark mt-3">
+            <div class="text-center mt-2">
                 <h1>{{$empresa->nombre}}</h1>
             </div>
+            <hr style="border-top: 1px solid white;">
             <div class="row mt-4">
                 <div class="col-md-6">
                     <h4>Cif: {{$empresa->cif}}</h4>
@@ -58,13 +59,13 @@
         </tbody>
     </table>
 
-
+    <br class="mt-5 mb-5">
     <h2 class="mt-5 d-inline">Informes de perdidas y ganancias</h2>
     <div class="text-right">
-        <a class="btn btn-success alig" href="{{ url('/empresas/'.$empresa->id.'/perdidasGanancias/add')}}">Crear Informe</a>
-        <a class="btn btn-success" href="{{ url('/empresas/'.$empresa->id.'/perdidasGanancias/import')}}">Importar Informe</a>
+        <a class="btn btn-success alig" href="{{ url('/empresas/'.$empresa->id.'/perdidasGanancias/add')}}">Crear Cuenta</a>
+        <a class="btn btn-success" href="{{ url('/empresas/'.$empresa->id.'/perdidasGanancias/import')}}">Importar Cuenta</a>
     </div>
-    <table class="table mt-2 table-hover">
+    <table class="table mt-2 mb-5 table-hover">
         <thead class="thead-dark">
             <tr>
                 <th>Año</th>

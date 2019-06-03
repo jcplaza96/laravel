@@ -64,7 +64,7 @@ class EmpresasController extends Controller
         $e_u->user_id = Auth::user()->id;
         $e_u->save();
 
-        return redirect('/');
+        return $this->getDetails($e->id);
 
     }
 }

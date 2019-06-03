@@ -18,13 +18,22 @@ class perdidasGananciasController extends Controller
         return view('perdidasGanancias.create', ['empresa_id' => $empresa_id, 'i' => $i]);
     }
 
+    public function deleteInforme($empresa_id, $perdidasGanancias_id)
+    {
+        $perdidasGanancias = perdidasGanancias::findOrFail($perdidasGanancias_id);
+        $perdidasGanancias->delete();
+
+        return app('App\Http\Controllers\EmpresasController')->getDetails($empresa_id);
+    }
+
     public function getDetails($empresa_id, $perdidasGanancias_id)
     {
 
         $perdidasGanancias = perdidasGanancias::findOrFail($perdidasGanancias_id);
 
         $e = Empresa::findOrFail($empresa_id);
-        $perdidasGananciasAnterior = $e-> perdidasGanancias()->where('anio', $perdidasGanancias->anio - 1)->firstOrFail();
+        $perdidasGananciasAnterior = $e-> perdidasGanancias()->where('anio', $perdidasGanancias->anio - 1)->first();
+        if ( $perdidasGananciasAnterior == null) $perdidasGananciasAnterior = $perdidasGanancias;
 
         return view( 'perdidasGanancias.detalles', [ 'perdidasGanancias' => $perdidasGanancias, 'perdidasGananciasAnterior' => $perdidasGananciasAnterior, 'empresa_id' => $empresa_id]);
     }
@@ -44,16 +53,16 @@ class perdidasGananciasController extends Controller
 
     public function getImport($empresa_id)
     {
-        return view('perdidasGanancias.import', ['empresa' => $empresa_id]);
+        return view('perdidasGanancias.import', ['empresa_id' => $empresa_id]);
     }
 
 
     public function postImport($empresa_id, Request $request)
     {
 
-        /*$this->validate($request, [
-            'excel' => 'required|mimes:XLS|max:2048',
-        ]);*/
+        $request->validate([
+            'excel' => 'required|mimes:xls|max:2048',
+        ]);
 
         if ($request->hasFile('excel')) {
             $excel = $request->file('excel');

@@ -1,9 +1,11 @@
 @extends('layouts.master')
 @section('content')
     <h2><a href="{{ url('/empresas/'.$empresa_id)}}"><i class="fas fa-arrow-circle-left"></a></i> Detalles del balance</h2>
-    <form class="mt-3">
+    <form action="" method="post" class="mt-3">
+        {{ csrf_field() }}
         <div class="text-right">
             <a class="btn btn-warning" href="{{action('BalancesController@getEdit', [$empresa_id, $balance])}}">Editar</a>
+            <button id="deleteButton" class="btn btn-danger" type="submit">Borrar</button>
         </div>
         <table class="table table-bordered table-responsive mt-2 table-striped w-100">
             <tbody >
