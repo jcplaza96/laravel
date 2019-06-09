@@ -4,6 +4,7 @@
     <form action="" method="post" class="mt-3">
         {{ csrf_field() }}
         <div class="text-right">
+            <a class="btn btn-outline-dark float-left" href="{{action('AnalisisController@getMasasPatrimoniales', [$empresa_id, $balance])}}">Análisis</a>
             <a class="btn btn-warning" href="{{action('BalancesController@getEdit', [$empresa_id, $balance])}}">Editar</a>
             <button id="deleteButton" class="btn btn-danger" type="submit">Borrar</button>
         </div>

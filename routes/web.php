@@ -17,7 +17,6 @@ Route::get('/', function () {
 });
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/excel', 'AnalisisController@prueba');
 
     Route::get('/empresas', 'EmpresasController@getList');
     Route::get('/empresas/create', 'EmpresasController@getCreate');
@@ -37,7 +36,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('/empresas/{empresa_id}/balances/{balance_id}', 'BalancesController@deleteBalance');
         Route::get('/empresas/{empresa_id}/balances/{balance_id}/edit', 'BalancesController@getEdit');
         Route::put('/empresas/{empresa_id}/balances/{balance_id}/edit', 'BalancesController@putEdit');
-    
+
+        Route::get('/empresas/{empresa_id}/balances/{balance_id}/masasPatrimoniales', 'AnalisisController@getMasasPatrimoniales');
+
     
         Route::get('/empresas/{empresa_id}/perdidasGanancias/import', 'perdidasGananciasController@getImport');
         Route::post('/empresas/{empresa_id}/perdidasGanancias/import', 'perdidasGananciasController@postImport');
