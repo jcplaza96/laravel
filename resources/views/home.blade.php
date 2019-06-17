@@ -6,7 +6,7 @@
         <hr class="mb-4">
         <h4>Las Pymes son el motor económico de España</h4>
         <p>En España el 99,8 % del tejido empresarial son Pymes,  crean  el 66,4 % del empleo del País y contribuyen a su crecimiento  económico con el 63 % del valor   Añadido Bruto. </p>
-        <p>Para mejorar la productividad de las Pymes hay que dotarlas con los mecanismos necesarios que establezcan un control  efectivo sobre la producción y su economía. </p>
+        <p>Para mejorar la productividad de las Pymes, hay que dotarlas con los mecanismos necesarios que establezcan un control  efectivo sobre la producción y su economía. </p>
         <p>Para ello la formación del empresario juega un papel relevante  en el impulso de su crecimiento.</p>
         <p>No son suficientes las capacidades innatas (visión de negocio, Capacidad de trabajo y superación), que caracterizan el perfil del emprendedor, virtudes que sin duda son fundamentales para la evolución del tejido empresarial, pero hay que potenciar dichas capacidades, con una formación adecuada y eficiente.</p>
         <p>Para ello en <b>Gesinem Analistas Financieros</b>, le garantizamos cubrir esas necesidades poniendo a su disposición una aplicación informática que le ayudará a resolver a aquellas dudas e incertidumbres que le surgirán en el desempeño de sus funciones directivas.</p>
@@ -34,7 +34,7 @@
                 <img class="rounded-circle" style="border: 2px solid #343a40" src="{{asset('assets/img/vision.jpg')}}" alt="Generic placeholder image" width="140" height="140">
                 <h2>Le facilita una visión</h2>
                 <h2>de futuro</h2>
-                <p>Las motos eléctricas son una gran alternativa para movernos por la ciudad o para realizar actividades de ocio. Los motores eléctricos están empezando a sustituir a los de combustión, y cada vez es más común ver ciclomotores y scooters eléctricos en nuestras ciudades.</p>
+                <p>La prevención es el mejor remedio para la advesidad. Una previsión veraz, facilita adaptar la situación al entorno económico del momento.</p>
             </div><!-- /.col-lg-4 -->
         </div><!-- /.row -->
 

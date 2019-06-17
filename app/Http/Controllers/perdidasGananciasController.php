@@ -185,56 +185,65 @@ class perdidasGananciasController extends Controller
 
     public function importExcel($anio, $empresa, $arrayDatos)
     {
-        //$arrayDatos = Excel::toArray(new BalancesImport,'prueba.XLS')[0];
-        $e = Empresa::findOrFail($empresa);
 
-        if ($e->perdidasGanancias()->where('anio', $anio)->first() === null) {
-            for ($i = 6; $i <= 7; $i++) {
+        try{
 
-                $perdidasGanancias = new perdidasGanancias();
-                $perdidasGanancias->empresa_id = $empresa;
-                $perdidasGanancias->anio = $anio;
-                $perdidasGanancias->importeNetoCifraNegocios = $arrayDatos[7][$i];
-                $perdidasGanancias->variacionExistenciasProductos = $arrayDatos[8][$i];
-                $perdidasGanancias->trabajosEmpresaActivo = $arrayDatos[9][$i];
-                $perdidasGanancias->aprovisionamientos = $arrayDatos[10][$i];
-                $perdidasGanancias->otrosIngresosExplotacion = $arrayDatos[11][$i];
-                $perdidasGanancias->gastosPersonal = $arrayDatos[12][$i];
-                $perdidasGanancias->otrosGastosExplotacion = $arrayDatos[13][$i];
-                $perdidasGanancias->amortizaciónInmovilizado = $arrayDatos[14][$i];
-                $perdidasGanancias->imputacionSubvencionesInmovilizado = $arrayDatos[15][$i];
-                $perdidasGanancias->excesosProvisiones = $arrayDatos[16][$i];
-                $perdidasGanancias->deterioroResultadoEnajenaciones = $arrayDatos[17][$i];
-                $perdidasGanancias->otrosResultados = $arrayDatos[18][$i];
-                $perdidasGanancias->resultadoExplotacion = $arrayDatos[19][$i];
-                $perdidasGanancias->totalIngresosFinancieros = $arrayDatos[20][$i];
-                $perdidasGanancias->inputacionSubvencionesFinanciero = $arrayDatos[21][$i];
-                $perdidasGanancias->otrosIngresosFinancieros = $arrayDatos[22][$i];
-                $perdidasGanancias->gastosFinancieros = $arrayDatos[23][$i];
-                $perdidasGanancias->variacionValorRazonable = $arrayDatos[24][$i];
-                $perdidasGanancias->diferenciasCambio = $arrayDatos[25][$i];
-                $perdidasGanancias->deterioroInstrumentosFinancieros = $arrayDatos[26][$i];
-                $perdidasGanancias->totalIngresosGastosFinancieros = $arrayDatos[27][$i];
-                $perdidasGanancias->incorporacionActivoFinanciero = $arrayDatos[28][$i];
-                $perdidasGanancias->ingresosConvenioAcreedores = $arrayDatos[29][$i];
-                $perdidasGanancias->restoIngresosGastos = $arrayDatos[30][$i];
-                $perdidasGanancias->resultadoFinanciero = $arrayDatos[31][$i];
-                $perdidasGanancias->resultadoAntesImpuestos = $arrayDatos[32][$i];
-                $perdidasGanancias->impuestosBeneficios = $arrayDatos[33][$i];
-                $perdidasGanancias->resultadoEjercicio = $arrayDatos[34][$i];
-                $perdidasGanancias->save();
-
-                if ($i == 6) {
-                    $informe_id = $perdidasGanancias->id;
+            //$arrayDatos = Excel::toArray(new BalancesImport,'prueba.XLS')[0];
+            $e = Empresa::findOrFail($empresa);
+    
+            if ($e->perdidasGanancias()->where('anio', $anio)->first() === null) {
+                for ($i = 6; $i <= 7; $i++) {
+    
+                    $perdidasGanancias = new perdidasGanancias();
+                    $perdidasGanancias->empresa_id = $empresa;
+                    $perdidasGanancias->anio = $anio;
+                    $perdidasGanancias->importeNetoCifraNegocios = $arrayDatos[7][$i];
+                    $perdidasGanancias->variacionExistenciasProductos = $arrayDatos[8][$i];
+                    $perdidasGanancias->trabajosEmpresaActivo = $arrayDatos[9][$i];
+                    $perdidasGanancias->aprovisionamientos = $arrayDatos[10][$i];
+                    $perdidasGanancias->otrosIngresosExplotacion = $arrayDatos[11][$i];
+                    $perdidasGanancias->gastosPersonal = $arrayDatos[12][$i];
+                    $perdidasGanancias->otrosGastosExplotacion = $arrayDatos[13][$i];
+                    $perdidasGanancias->amortizaciónInmovilizado = $arrayDatos[14][$i];
+                    $perdidasGanancias->imputacionSubvencionesInmovilizado = $arrayDatos[15][$i];
+                    $perdidasGanancias->excesosProvisiones = $arrayDatos[16][$i];
+                    $perdidasGanancias->deterioroResultadoEnajenaciones = $arrayDatos[17][$i];
+                    $perdidasGanancias->otrosResultados = $arrayDatos[18][$i];
+                    $perdidasGanancias->resultadoExplotacion = $arrayDatos[19][$i];
+                    $perdidasGanancias->totalIngresosFinancieros = $arrayDatos[20][$i];
+                    $perdidasGanancias->inputacionSubvencionesFinanciero = $arrayDatos[21][$i];
+                    $perdidasGanancias->otrosIngresosFinancieros = $arrayDatos[22][$i];
+                    $perdidasGanancias->gastosFinancieros = $arrayDatos[23][$i];
+                    $perdidasGanancias->variacionValorRazonable = $arrayDatos[24][$i];
+                    $perdidasGanancias->diferenciasCambio = $arrayDatos[25][$i];
+                    $perdidasGanancias->deterioroInstrumentosFinancieros = $arrayDatos[26][$i];
+                    $perdidasGanancias->totalIngresosGastosFinancieros = $arrayDatos[27][$i];
+                    $perdidasGanancias->incorporacionActivoFinanciero = $arrayDatos[28][$i];
+                    $perdidasGanancias->ingresosConvenioAcreedores = $arrayDatos[29][$i];
+                    $perdidasGanancias->restoIngresosGastos = $arrayDatos[30][$i];
+                    $perdidasGanancias->resultadoFinanciero = $arrayDatos[31][$i];
+                    $perdidasGanancias->resultadoAntesImpuestos = $arrayDatos[32][$i];
+                    $perdidasGanancias->impuestosBeneficios = $arrayDatos[33][$i];
+                    $perdidasGanancias->resultadoEjercicio = $arrayDatos[34][$i];
+                    $perdidasGanancias->save();
+    
+                    if ($i == 6) {
+                        $informe_id = $perdidasGanancias->id;
+                    }
+    
+                    if ($e->perdidasGanancias()->where('anio', $anio - 1)->first() != null) {
+                        $i = 8;
+                    } else {
+                        $anio -= 1;
+                    }
                 }
-
-                if ($e->perdidasGanancias()->where('anio', $anio - 1)->first() != null) {
-                    $i = 8;
-                } else {
-                    $anio -= 1;
-                }
+                return $this->getDetails($empresa, $informe_id);
             }
-            return $this->getDetails($empresa, $informe_id);
+        } catch (\Exception $e) {
+            $errors = \Illuminate\Validation\ValidationException::withMessages([
+                'excel' => ['Formato de cuenta Incompatible'],
+            ]);
+            throw $errors;
         }
     }
 }

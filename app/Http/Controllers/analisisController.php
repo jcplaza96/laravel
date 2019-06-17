@@ -31,6 +31,7 @@ class AnalisisController extends Controller
         $this->pasivoCorriente( $pasivo->pasivoCorriente);
         $this->fondosPropios( $pasivo->patrimonioNeto);
 
+
         return view('analisis.masasPatrimoniales', [ 'lava' => $this->lava, 'empresa_id'=>$empresa_id]);
 
     }
@@ -108,6 +109,7 @@ class AnalisisController extends Controller
             ->addRow([ 'V. Periodificaciones a largo plazo.',  $pasivoNoCorriente->otrasAportacionesSocios])
             ->addRow([ 'VI. Acreedores comerciales no corrientes',  $pasivoNoCorriente->resultadoEjercicio])
             ->addRow([ 'VII. Deuda con características especiales a largo plazo.',  $pasivoNoCorriente->dividendoCuenta]);
+
 
         $this->lava->PieChart( 'pasivoNoCorriente', $reasons, [
             'title'  => 'Pasivo No Corriente',

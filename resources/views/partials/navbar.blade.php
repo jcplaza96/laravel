@@ -32,7 +32,7 @@
                         </button>
                     </form>
                 @else
-                    <a class="nav-link" href="{{url('/login')}}">Login</a>
+                    <a class="nav-link" href="{{url('/login')}}">Acceso</a>
                 @endif
 
             </li>
