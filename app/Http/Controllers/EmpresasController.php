@@ -17,6 +17,14 @@ class EmpresasController extends Controller
         return view('empresa.list', ['arrayEmpresas'=>$arrayEmpresas]);
     }
 
+    public function deleteEmpresa(Request $empresa)
+    {
+        $empresa = Empresa::findOrFail($empresa['empresa_id']);
+        $empresa->delete();
+
+        return app('App\Http\Controllers\EmpresasController')->getList();
+    }
+
     public function getDetails($id){
     
         $empresa = Empresa::findOrFail($id);

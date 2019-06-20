@@ -19,6 +19,7 @@ Route::get('/', function () {
 Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/empresas', 'EmpresasController@getList');
+    Route::post('/empresas', 'EmpresasController@deleteEmpresa');
     Route::get('/empresas/create', 'EmpresasController@getCreate');
     Route::post('empresas/create', 'EmpresasController@postCreate');
 
